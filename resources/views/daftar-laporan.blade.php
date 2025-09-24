@@ -31,6 +31,11 @@
         border: 1px solid #0d6efd;
         border-radius: 0.375rem;
       }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
       @media (max-width: 768px) {
         #sidebar {
           width: 100% !important;
@@ -97,9 +102,36 @@
       <div id="content" class="flex-grow-1">
         <h2 class="mb-4">Daftar Laporan</h2>
           
-        <div class="mt-5 d-flex justify-content-center">
-          <div class="card card-border" style="width: 38rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
+        <div class="mt-5 card-container">
+          <div class="card card-border" style="width: 18rem;">
+            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button class="btn btn-primary">Go somewhere</button>
+            </div>
+          </div>
+
+          <div class="card card-border" style="width: 18rem;">
+            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button class="btn btn-primary">Go somewhere</button>
+            </div>
+          </div>
+          
+          <div class="card card-border" style="width: 18rem;">
+            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button class="btn btn-primary">Go somewhere</button>
+            </div>
+          </div>
+
+          <div class="card card-border" style="width: 18rem;">
+            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
