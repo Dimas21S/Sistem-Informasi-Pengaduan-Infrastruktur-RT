@@ -8,3 +8,6 @@ Route::get('/', function () {
 Route::get('/daftar-laporan', function () {
     return view('daftar-laporan');
 });
+Route::get('/profil', function () {
+    return view('profil');
+});
