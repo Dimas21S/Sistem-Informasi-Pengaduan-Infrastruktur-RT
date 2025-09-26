@@ -31,6 +31,55 @@
         border: 1px solid #0d6efd;
         border-radius: 0.375rem;
       }
+      
+      /* Gaya baru untuk card status */
+      .status-card {
+        position: relative;
+        width: 18rem; 
+        height: 8rem; 
+      }
+      .status-card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+      .status-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.8rem;
+      }
+      .status-title {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+      .status-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+      
+      /* Warna khusus untuk setiap status */
+      .success-card {
+        border-left: 5px solid #28a745;
+      }
+      .success-icon {
+        color: #28a745;
+      }
+      .process-card {
+        border-left: 5px solid #fd7e14;
+      }
+      .process-icon {
+        color: #fd7e14;
+      }
+      .pending-card {
+        border-left: 5px solid #dc3545;
+      }
+      .pending-icon {
+        color: #dc3545;
+      }
+      
       @media (max-width: 768px) {
         #sidebar {
           width: 100% !important;
@@ -49,49 +98,7 @@
   <body>
     <div class="d-flex">
       <!-- Sidebar -->
-      <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
-          </a>
-          <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#">Proyek Baru</a></li>
-            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-            <li><a class="dropdown-item" href="#">Profil</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Keluar</a></li>
-          </ul>
-        </div>
-        <hr> 
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-              <i class="bi bi-house-door-fill"></i>
-              Beranda
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
-              <i class="bi bi-card-list"></i>
-              Daftar Laporan
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
-              <i class="bi bi-person-fill"></i>
-              Profil
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none">
-            <i class="bi bi-box-arrow-left me-2"></i>
-            Log Out
-          </a>
-        </div>
-      </div>
+      <x-sidebar/>
 
       <!-- Konten Utama -->
       <div id="content" class="flex-grow-1">
@@ -99,29 +106,36 @@
         
         <div class="card-container d-flex flex-wrap justify-content-center">
           <!-- Card laporan sukses -->
-          <div class="card" style="width: 18rem; height: 8rem; border-left: 5px solid green;">
-            <div class="card-body">
-              <h5 class="card-title">Status: Sukses</h5>
-              <p class="card-text">42</p>
+          <div class="card status-card success-card">
+            <div class="card-body status-card-body">
+              <h5 class="card-title status-title">Status: Sukses</h5>
+              <i class="bi bi-check-circle status-icon success-icon"></i>
+              <p class="card-text status-value">42</p>
             </div>
           </div>
-          <div class="card" style="width: 18rem; height: 8rem; border-left: 5px solid orange;">
-            <div class="card-body">
-              <h5 class="card-title">Status: Proses</h5>
-              <p class="card-text">42</p>
+
+          <!-- Card laporan proses -->
+          <div class="card status-card process-card">
+            <div class="card-body status-card-body">
+              <h5 class="card-title status-title">Status: Proses</h5>
+              <i class="bi bi-gear status-icon process-icon"></i>
+              <p class="card-text status-value">42</p>
             </div>
           </div>
-          <div class="card" style="width: 18rem; height: 8rem; border-left: 5px solid red;">
-            <div class="card-body">
-              <h5 class="card-title">Status: Pending</h5>
-              <p class="card-text">42</p>
+
+          <!-- Card laporan pending -->
+          <div class="card status-card pending-card">
+            <div class="card-body status-card-body">
+              <h5 class="card-title status-title">Status: Pending</h5>
+              <i class="bi bi-bookmark-x status-icon pending-icon"></i>
+              <p class="card-text status-value">42</p>
             </div>
           </div>
         </div>
           
         <div class="mt-5 d-flex justify-content-center">
-          <div class="card card-border" style="width: 38rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
+          <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 38rem; background: transparent;">
+            <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
