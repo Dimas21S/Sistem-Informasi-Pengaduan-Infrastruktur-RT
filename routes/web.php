@@ -12,3 +12,6 @@ Route::get('/daftar-laporan', function () {
 Route::get('/profil', function () {
     return view('profil');
 })->name('profil');
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('auth.login');
