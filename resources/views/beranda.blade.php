@@ -9,30 +9,31 @@
     <style>
       body {
         overflow-x: hidden;
-      }
-      #sidebar {
-        min-height: 100vh;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        z-index: 100;
+        background-color: #f8f9fa;
       }
       #content {
         padding: 20px;
         width: calc(100% - 280px);
       }
+
+      #sidebar {
+        min-height: 100vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+      }
       .card {
         margin: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s;
+        border: none;
+        border-radius: 10px;
       }
       .card:hover {
         transform: translateY(-5px);
-      }
-      .card-border {
-        border: 1px solid #0d6efd;
-        border-radius: 0.375rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
       
-      /* Gaya baru untuk card status */
+      /* Gaya untuk card status */
       .status-card {
         position: relative;
         width: 18rem; 
@@ -49,6 +50,7 @@
         top: 15px;
         right: 15px;
         font-size: 1.8rem;
+        opacity: 0.8;
       }
       .status-title {
         margin-bottom: 0.5rem;
@@ -63,23 +65,48 @@
       /* Warna khusus untuk setiap status */
       .success-card {
         border-left: 5px solid #28a745;
+        background: linear-gradient(135deg, #f8fff9, #e8f5e9);
       }
       .success-icon {
         color: #28a745;
       }
       .process-card {
         border-left: 5px solid #fd7e14;
+        background: linear-gradient(135deg, #fff8f1, #ffe8d6);
       }
       .process-icon {
         color: #fd7e14;
       }
       .pending-card {
         border-left: 5px solid #dc3545;
+        background: linear-gradient(135deg, #fff5f5, #ffe6e6);
       }
       .pending-icon {
         color: #dc3545;
       }
       
+      /* Gaya untuk card informasi */
+      .info-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .info-card-img {
+        height: 200px;
+        object-fit: cover;
+      }
+      
+      /* Header dashboard */
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      /* Responsif */
       @media (max-width: 768px) {
         #sidebar {
           width: 100% !important;
@@ -92,6 +119,10 @@
           flex-direction: column;
           align-items: center;
         }
+        .status-card {
+          width: 100%;
+          max-width: 18rem;
+        }
       }
     </style>
   </head>
@@ -102,15 +133,49 @@
 
       <!-- Konten Utama -->
       <div id="content" class="flex-grow-1">
-        <h2 class="mb-4">Dashboard Laporan</h2>
+        <div class="dashboard-header">
+          <h2 class="mb-0">Dashboard Laporan</h2>
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              <small class="text-muted">Selamat datang,</small>
+              <div class="fw-bold">Nama Pengguna</div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i> Profil</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Pengaturan</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
         
-        <div class="card-container d-flex flex-wrap justify-content-center">
+        <!-- Ringkasan Statistik -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="card bg-light">
+              <div class="card-body">
+                <h5 class="card-title">Ringkasan Laporan</h5>
+                <p class="card-text">Total laporan yang telah dibuat: <strong>126</strong> | Laporan bulan ini: <strong>42</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card Status Laporan -->
+        <h4 class="mb-3">Statistik Laporan</h4>
+        <div class="card-container d-flex flex-wrap justify-content-center mb-5">
           <!-- Card laporan sukses -->
           <div class="card status-card success-card">
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Sukses</h5>
               <i class="bi bi-check-circle status-icon success-icon"></i>
               <p class="card-text status-value">42</p>
+              <small class="text-muted">Laporan berhasil diproses</small>
             </div>
           </div>
 
@@ -119,7 +184,8 @@
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Proses</h5>
               <i class="bi bi-gear status-icon process-icon"></i>
-              <p class="card-text status-value">42</p>
+              <p class="card-text status-value">15</p>
+              <small class="text-muted">Laporan sedang diproses</small>
             </div>
           </div>
 
@@ -127,13 +193,16 @@
           <div class="card status-card pending-card">
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Pending</h5>
-              <i class="bi bi-bookmark-x status-icon pending-icon"></i>
-              <p class="card-text status-value">42</p>
+              <i class="bi bi-clock status-icon pending-icon"></i>
+              <p class="card-text status-value">8</p>
+              <small class="text-muted">Laporan menunggu tindakan</small>
             </div>
           </div>
         </div>
-          
-        <div class="mt-5 d-flex justify-content-center">
+        
+        <!-- Informasi Penting -->
+        <h4 class="mb-3">Informasi Penting</h4>
+         <div class="mt-5 d-flex justify-content-center">
           <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 38rem; background: transparent;">
             <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
             <div class="card-body">
@@ -143,6 +212,8 @@
             </div>
           </div>
         </div>
+      </div>
+
       </div>
     </div>
 

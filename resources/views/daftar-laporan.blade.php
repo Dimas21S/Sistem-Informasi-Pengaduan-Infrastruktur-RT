@@ -7,46 +7,216 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --light-bg: #f8f9fa;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
       body {
         overflow-x: hidden;
+        background-color: var(--light-bg);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
-      #sidebar {
+
+       #sidebar {
         min-height: 100vh;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 100;
       }
+      
       #content {
-        padding: 20px;
+        padding: 25px;
         width: calc(100% - 280px);
+        transition: width 0.3s ease;}
+      
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #dee2e6;
       }
+      
+      .page-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin: 0;
+      }
+      
       .card {
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
+        border: none;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+        overflow: hidden;
       }
+      
       .card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       }
-      .card-border {
-        border: 1px solid #0d6efd;
-        border-radius: 0.375rem;
+      
+      .card-img-container {
+        height: 180px;
+        overflow: hidden;
+        position: relative;
       }
-      .card-container {
+      
+      .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      
+      .card:hover .card-img-top {
+        transform: scale(1.05);
+      }
+      
+      .card-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+      }
+      
+      .card-body {
+        padding: 20px;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        flex-direction: column;
+        height: 100%;
       }
+      
+      .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      
+      .card-text {
+        color: #6c757d;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        flex-grow: 1;
+        margin-bottom: 15px;
+      }
+      
+      .card-footer {
+        background: transparent;
+        border-top: 1px solid #f1f1f1;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .card-date {
+        font-size: 0.8rem;
+        color: #6c757d;
+      }
+      
+      .filter-section {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: var(--card-shadow);
+      }
+      
+      .stats-card {
+        text-align: center;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .stats-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      
+      .stats-label {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+      
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6c757d;
+      }
+      
+      .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #dee2e6;
+      }
+      
+      @media (max-width: 992px) {
+        #sidebar {
+          width: 80px;
+        }
+        
+        .sidebar-brand h4 {
+          font-size: 1.2rem;
+        }
+        
+        .nav-link span {
+          display: none;
+        }
+        
+        #content {
+          width: calc(100% - 80px);
+        }
+      }
+      
       @media (max-width: 768px) {
         #sidebar {
-          width: 100% !important;
+          width: 100%;
           min-height: auto;
+          position: fixed;
+          bottom: 0;
+          top: auto;
+          z-index: 1030;
         }
+        
+        .sidebar-nav {
+          display: flex;
+          justify-content: space-around;
+        }
+        
+        .nav-item {
+          flex: 1;
+        }
+        
+        .nav-link {
+          margin: 0;
+          padding: 10px 5px;
+          text-align: center;
+          border-radius: 0;
+        }
+        
         #content {
           width: 100%;
+          padding-bottom: 80px;
         }
-        .card-container {
+        
+        .page-header {
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
+        }
+        
+        .header-actions {
+          margin-top: 15px;
+          width: 100%;
         }
       }
     </style>
@@ -58,45 +228,197 @@
 
       <!-- Konten Utama -->
       <div id="content" class="flex-grow-1">
-        <h2 class="mb-4">Daftar Laporan</h2>
-          
-        <div class="mt-5 card-container">
-          <div class="card card-border" style="width: 18rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
+        <!-- Header Halaman -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Daftar Laporan</h1>
+            <p class="text-muted mb-0">Kelola dan pantau semua laporan Anda di satu tempat</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary">
+              <i class="bi bi-plus-circle me-1"></i> Buat Laporan Baru
+            </button>
+          </div>
+        </div>
+        
+        <!-- Statistik Cepat -->
+        <div class="row mb-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="stats-card bg-light">
+              <div class="stats-number text-primary">24</div>
+              <div class="stats-label">Total Laporan</div>
             </div>
           </div>
-
-          <div class="card card-border" style="width: 18rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
+          <div class="col-md-3 col-sm-6">
+            <div class="stats-card bg-light">
+              <div class="stats-number text-success">18</div>
+              <div class="stats-label">Selesai</div>
             </div>
           </div>
-          
-          <div class="card card-border" style="width: 18rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
+          <div class="col-md-3 col-sm-6">
+            <div class="stats-card bg-light">
+              <div class="stats-number text-warning">4</div>
+              <div class="stats-label">Dalam Proses</div>
             </div>
           </div>
-
-          <div class="card card-border" style="width: 18rem;">
-            <img src="/public/image/Wa.jpg" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 100px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
+          <div class="col-md-3 col-sm-6">
+            <div class="stats-card bg-light">
+              <div class="stats-number text-danger">2</div>
+              <div class="stats-label">Menunggu</div>
             </div>
           </div>
         </div>
+        
+        <!-- Filter dan Pencarian -->
+        <div class="filter-section">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="searchInput" class="form-label">Cari Laporan</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="searchInput" placeholder="Masukkan kata kunci...">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="statusFilter" class="form-label">Status</label>
+              <select class="form-select" id="statusFilter">
+                <option value="">Semua Status</option>
+                <option value="success">Selesai</option>
+                <option value="warning">Dalam Proses</option>
+                <option value="danger">Menunggu</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="sortBy" class="form-label">Urutkan</label>
+              <select class="form-select" id="sortBy">
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+                <option value="title">Judul A-Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Daftar Laporan -->
+        <div class="row">
+          <!-- Laporan 1 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
+            <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button class="btn btn-primary">Go somewhere</button>
+            </div>
+          </div>
+          
+          <!-- Laporan 2 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+              <div class="card-img-container card-border  ">
+                <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="Laporan Proyek">
+                <span class="card-badge badge bg-warning text-dark">Dalam Proses</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Laporan Proyek X</h5>
+                <p class="card-text">Update perkembangan proyek X termasuk pencapaian milestone dan kendala yang dihadapi tim.</p>
+              </div>
+              <div class="card-footer">
+                <small class="card-date">12 Mar 2023</small>
+                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Laporan 3 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+              <div class="card-img-container">
+                <img src="https://via.placeholder.com/300x180/e74c3c/ffffff?text=Laporan+Audit" class="card-img-top" alt="Laporan Audit">
+                <span class="card-badge badge bg-danger">Menunggu</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Laporan Audit Internal</h5>
+                <p class="card-text">Hasil audit internal departemen IT dengan rekomendasi perbaikan untuk meningkatkan keamanan data.</p>
+              </div>
+              <div class="card-footer">
+                <small class="card-date">10 Mar 2023</small>
+                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Laporan 4 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+              <div class="card-img-container">
+                <img src="https://via.placeholder.com/300x180/2ecc71/ffffff?text=Laporan+Marketing" class="card-img-top" alt="Laporan Marketing">
+                <span class="card-badge badge bg-success">Selesai</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Laporan Campaign Marketing</h5>
+                <p class="card-text">Evaluasi hasil campaign marketing Q1 2023 dengan analisis ROI dan rekomendasi untuk Q2.</p>
+              </div>
+              <div class="card-footer">
+                <small class="card-date">8 Mar 2023</small>
+                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Laporan 5 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+              <div class="card-img-container">
+                <img src="https://via.placeholder.com/300x180/9b59b6/ffffff?text=Laporan+HR" class="card-img-top" alt="Laporan HR">
+                <span class="card-badge badge bg-warning text-dark">Dalam Proses</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Laporan Kinerja Karyawan</h5>
+                <p class="card-text">Review kinerja karyawan triwulan pertama dan rekomendasi untuk program pengembangan.</p>
+              </div>
+              <div class="card-footer">
+                <small class="card-date">5 Mar 2023</small>
+                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Laporan 6 -->
+          <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+              <div class="card-img-container">
+                <img src="https://via.placeholder.com/300x180/f39c12/ffffff?text=Laporan+Operasional" class="card-img-top" alt="Laporan Operasional">
+                <span class="card-badge badge bg-success">Selesai</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Laporan Operasional Harian</h5>
+                <p class="card-text">Ringkasan operasional harian termasuk produksi, distribusi, dan kendala operasional.</p>
+              </div>
+              <div class="card-footer">
+                <small class="card-date">3 Mar 2023</small>
+                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Selanjutnya</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
 
