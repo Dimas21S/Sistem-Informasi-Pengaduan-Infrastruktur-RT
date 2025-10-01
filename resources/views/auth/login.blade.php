@@ -11,7 +11,8 @@
 
   <div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
     <h3 class="text-center mb-4">Login</h3>
-    <form>
+    <form action="{{ route('login') }}" method="POST">
+      @csrf
       <!-- Username / Email -->
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -36,7 +37,7 @@
 
     <!-- Footer -->
     <p class="text-center mt-3 mb-0">
-      Belum punya akun? <a href="#">Register</a>
+      Belum punya akun? <a href="{{ route('register') }}">Register</a>
     </p>
   </div>
 

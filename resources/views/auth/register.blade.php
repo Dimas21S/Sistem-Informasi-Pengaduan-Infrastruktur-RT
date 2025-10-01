@@ -11,8 +11,14 @@
 
   <div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
     <h3 class="text-center mb-4">Register</h3>
-    <form>
+    <form action="{{ route('register.post') }}" method="POST">
+      @csrf
       <!-- Username / Email -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
+      </div>
+      
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" placeholder="Masukkan email">
@@ -31,12 +37,12 @@
       </div>
 
       <!-- Button -->
-      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
 
     <!-- Footer -->
     <p class="text-center mt-3 mb-0">
-      Belum punya akun? <a href="#">Register</a>
+      Sudah punya akun? <a href="{{ route('login') }}">Login</a>
     </p>
   </div>
 
