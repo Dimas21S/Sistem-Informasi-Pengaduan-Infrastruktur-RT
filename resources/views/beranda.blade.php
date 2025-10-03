@@ -155,7 +155,7 @@
         </div>
         
         <!-- Ringkasan Statistik -->
-        <div class="row mb-4">
+        {{-- <div class="row mb-4">
           <div class="col-12">
             <div class="card bg-light">
               <div class="card-body">
@@ -164,7 +164,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         
         <!-- Card Status Laporan -->
         <h4 class="mb-3">Statistik Laporan</h4>
