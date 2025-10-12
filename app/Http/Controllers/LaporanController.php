@@ -8,10 +8,22 @@ use App\Models\Report;
 
 class LaporanController extends Controller
 {
+    public function viewBeranda()
+    {
+        $reports = Report::all();
+        $firstReport = $reports->first();
+        $completed = $reports->where('status', 'completed')->count();
+        $pending = $reports->where('status', 'pending')->count();
+        $progress = $reports->where('status', 'progress')->count();
+        return view('beranda', compact('completed', 'pending', 'progress', 'firstReport'));
+    }
+
+
     //fungsi untuk menampilkan daftar laporan
     public function showLaporan()
     {
         $reports = Report::all();
+        
         return view('daftar-laporan', compact('reports'));
     }
 

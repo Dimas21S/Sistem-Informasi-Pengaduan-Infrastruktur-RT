@@ -154,65 +154,56 @@
           </div>
         </div>
         
-        <!-- Ringkasan Statistik -->
-        {{-- <div class="row mb-4">
-          <div class="col-12">
-            <div class="card bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Ringkasan Laporan</h5>
-                <p class="card-text">Total laporan yang telah dibuat: <strong>126</strong> | Laporan bulan ini: <strong>42</strong></p>
-              </div>
-            </div>
-          </div>
-        </div> --}}
-        
         <!-- Card Status Laporan -->
         <h4 class="mb-3">Statistik Laporan</h4>
         <div class="card-container d-flex flex-wrap justify-content-center mb-5">
           <!-- Card laporan sukses -->
-          <div class="card status-card success-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Sukses</h5>
-              <i class="bi bi-check-circle status-icon success-icon"></i>
-              <p class="card-text status-value">42</p>
-              <small class="text-muted">Laporan berhasil diproses</small>
-            </div>
-          </div>
 
-          <!-- Card laporan proses -->
-          <div class="card status-card process-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Proses</h5>
-              <i class="bi bi-gear status-icon process-icon"></i>
-              <p class="card-text status-value">15</p>
-              <small class="text-muted">Laporan sedang diproses</small>
-            </div>
-          </div>
+          <x-card-status 
+            judul="Sukses" 
+            angka="{{ $completed }}" 
+            deskripsi="Laporan berhasil diproses" 
+            ikon="bi-check-circle" 
+            warna="success"/>
+          
+          <x-card-status 
+            judul="Proses" 
+            angka="{{ $progress }}" 
+            deskripsi="Laporan sedang diproses" 
+            ikon="bi-gear" 
+            warna="process"/>
 
-          <!-- Card laporan pending -->
-          <div class="card status-card pending-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Pending</h5>
-              <i class="bi bi-clock status-icon pending-icon"></i>
-              <p class="card-text status-value">8</p>
-              <small class="text-muted">Laporan menunggu tindakan</small>
-            </div>
-          </div>
+          <x-card-status 
+            judul="Pending"
+            angka="{{ $pending }}" 
+            deskripsi="Laporan menunggu tindakan" 
+            ikon="bi-clock" 
+            warna="pending"/>
         </div>
         
         <!-- Informasi Penting -->
-        <h4 class="mb-3">Informasi Penting</h4>
-         <div class="mt-5 d-flex justify-content-center">
-          <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 38rem; background: transparent;">
-            <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
+        @if ($firstReport)
+          <div class="alert alert-info">
+            <strong>Informasi Penting:</strong> Laporan terbaru Anda adalah "<em>{{ $firstReport->title }}</em>".
+          </div>
+
+          <h4 class="mb-3">Informasi Penting</h4>
+            <div class="mt-5 d-flex justify-content-center">
+              <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 38rem; background: transparent;">
+                <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <button class="btn btn-primary">Go somewhere</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          @else
+          <div class="alert alert-warning">
+            <strong>Perhatian:</strong> Anda belum memiliki laporan. Silakan buat laporan baru untuk melihat informasi penting di sini.
+          </div>
+        @endif
 
       </div>
     </div>

@@ -13,7 +13,18 @@ class UserController extends Controller
     public function getProfile()
     {
         $user = Auth::user();
+        $reports = $user->reports;
+        $completed = $reports->where('status', 'completed')->count();
+        $pending = $reports->where('status', 'pending')->count();
+        $progress = $reports->where('status', 'progress')->count();
 
-        return view('profil', compact('user'));
+        return view('profil', compact('user', 'completed', 'pending', 'progress'));
     }
+
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return view('admin.user.index', compact('users'));
+    }
+    
 }

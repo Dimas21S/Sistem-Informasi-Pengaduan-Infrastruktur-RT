@@ -306,105 +306,45 @@
           <!-- Laporan 1 -->
           <div class="col-xl-4 col-lg-6 col-md-6">
             <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
-            <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <button class="btn btn-primary">Go somewhere</button>
-            </div>
-          </div>
-          
-          <!-- Laporan 2 -->
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card h-100">
-              <div class="card-img-container card-border  ">
-                <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="Laporan Proyek">
-                <span class="card-badge badge bg-warning text-dark">Dalam Proses</span>
-              </div>
+              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
               <div class="card-body">
-                <h5 class="card-title">Laporan Proyek X</h5>
-                <p class="card-text">Update perkembangan proyek X termasuk pencapaian milestone dan kendala yang dihadapi tim.</p>
-              </div>
-              <div class="card-footer">
-                <small class="card-date">12 Mar 2023</small>
-                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button class="btn btn-primary">Go somewhere</button>
               </div>
             </div>
           </div>
-          
-          <!-- Laporan 3 -->
           <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card h-100">
-              <div class="card-img-container">
-                <img src="https://via.placeholder.com/300x180/e74c3c/ffffff?text=Laporan+Audit" class="card-img-top" alt="Laporan Audit">
-                <span class="card-badge badge bg-danger">Menunggu</span>
-              </div>
+            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
+              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
               <div class="card-body">
-                <h5 class="card-title">Laporan Audit Internal</h5>
-                <p class="card-text">Hasil audit internal departemen IT dengan rekomendasi perbaikan untuk meningkatkan keamanan data.</p>
-              </div>
-              <div class="card-footer">
-                <small class="card-date">10 Mar 2023</small>
-                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button class="btn btn-primary">Go somewhere</button>
               </div>
             </div>
           </div>
-          
-          <!-- Laporan 4 -->
           <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card h-100">
-              <div class="card-img-container">
-                <img src="https://via.placeholder.com/300x180/2ecc71/ffffff?text=Laporan+Marketing" class="card-img-top" alt="Laporan Marketing">
-                <span class="card-badge badge bg-success">Selesai</span>
-              </div>
+            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
+              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
               <div class="card-body">
-                <h5 class="card-title">Laporan Campaign Marketing</h5>
-                <p class="card-text">Evaluasi hasil campaign marketing Q1 2023 dengan analisis ROI dan rekomendasi untuk Q2.</p>
-              </div>
-              <div class="card-footer">
-                <small class="card-date">8 Mar 2023</small>
-                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button class="btn btn-primary">Go somewhere</button>
               </div>
             </div>
           </div>
-          
-          <!-- Laporan 5 -->
           <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card h-100">
-              <div class="card-img-container">
-                <img src="https://via.placeholder.com/300x180/9b59b6/ffffff?text=Laporan+HR" class="card-img-top" alt="Laporan HR">
-                <span class="card-badge badge bg-warning text-dark">Dalam Proses</span>
-              </div>
+            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
+              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
               <div class="card-body">
-                <h5 class="card-title">Laporan Kinerja Karyawan</h5>
-                <p class="card-text">Review kinerja karyawan triwulan pertama dan rekomendasi untuk program pengembangan.</p>
-              </div>
-              <div class="card-footer">
-                <small class="card-date">5 Mar 2023</small>
-                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button class="btn btn-primary">Go somewhere</button>
               </div>
             </div>
           </div>
-          
-          <!-- Laporan 6 -->
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card h-100">
-              <div class="card-img-container">
-                <img src="https://via.placeholder.com/300x180/f39c12/ffffff?text=Laporan+Operasional" class="card-img-top" alt="Laporan Operasional">
-                <span class="card-badge badge bg-success">Selesai</span>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Laporan Operasional Harian</h5>
-                <p class="card-text">Ringkasan operasional harian termasuk produksi, distribusi, dan kendala operasional.</p>
-              </div>
-              <div class="card-footer">
-                <small class="card-date">3 Mar 2023</small>
-                <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+
         <!-- Pagination -->
         <nav aria-label="Page navigation" class="mt-4">
           <ul class="pagination justify-content-center">
