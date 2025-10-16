@@ -14,11 +14,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $reports = $user->reports;
+        $count = $reports->count();
         $completed = $reports->where('status', 'completed')->count();
         $pending = $reports->where('status', 'pending')->count();
         $progress = $reports->where('status', 'progress')->count();
 
-        return view('profil', compact('user', 'completed', 'pending', 'progress'));
+        return view('profil', compact('user', 'count', 'completed', 'pending', 'progress'));
     }
 
     public function getAllUsers()

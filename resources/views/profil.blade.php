@@ -140,11 +140,11 @@
           </div>
           <div class="col-md-8 mb-4">
             <div class="profile-info">
-              <h4>Nama Pengguna</h4>
-              <p class="text-muted">email@example.com</p>
-              <p><i class="bi bi-telephone me-2"></i> +62 812-3456-7890</p>
-              <p><i class="bi bi-geo-alt me-2"></i> Jakarta, Indonesia</p>
-              
+              <h4>{{ $user->name }}</h4>
+              <p class="text-muted">{{ $user->email }}</p>
+              <p><i class="bi bi-telephone me-2"></i> {{ $user->phone }}</p>
+              <p><i class="bi bi-geo-alt me-2"></i> {{ $user->address }}</p>
+
               <div class="profile-actions">
                 <button class="btn btn-primary me-2">
                   <i class="bi bi-pencil-square me-1"></i> Edit Profil
@@ -161,25 +161,25 @@
         <div class="row mt-4">
           <div class="col-md-3 mb-3">
             <div class="card stats-card">
-              <div class="stats-number text-primary">15</div>
+              <div class="stats-number text-primary">{{ $count }}</div>
               <div class="stats-label">Total Laporan</div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <div class="card stats-card">
-              <div class="stats-number text-success">10</div>
+              <div class="stats-number text-success">{{ $completed }}</div>
               <div class="stats-label">Laporan Selesai</div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <div class="card stats-card">
-              <div class="stats-number text-warning">3</div>
+              <div class="stats-number text-warning">{{ $progress }}</div>
               <div class="stats-label">Dalam Proses</div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <div class="card stats-card">
-              <div class="stats-number text-info">2</div>
+              <div class="stats-number text-info">{{ $pending }}</div>
               <div class="stats-label">Menunggu</div>
             </div>
           </div>
