@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Report;
+use App\Models\User;
 
 class LaporanController extends Controller
 {
@@ -46,24 +47,41 @@ class LaporanController extends Controller
     // Fungsi untuk menyimpan laporan baru
     public function postLaporan(Request $request)
     {
+        $user = Report::user();
+
+        $title = 'Laporan ID ' . (Report::max('id_laporan') + 1);
+        
         $validasi = [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'deskripsi' => 'required|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ];
 
         $message = [
-            'title.required' => 'Judul laporan wajib diisi!',
-            'title.string' => 'Judul laporan harus berupa teks!',
-            'title.max' => 'Judul laporan maksimal 255 karakter!',
-            'content.required' => 'Isi laporan wajib diisi!',
-            'content.string' => 'Isi laporan harus berupa teks!',
+            'deskripsi.required' => 'Isi laporan wajib diisi!',
+            'deskripsi.string' => 'Isi laporan harus berupa teks!',
+            'foto.required' => 'Foto wajib diunggah!',
+            'foto.image' => 'File yang diunggah harus berupa gambar!',
+            'foto.mimes' => 'Format foto harus jpeg, png, atau jpg!',
+            'foto.max' => 'Ukuran foto maksimal 5MB!',
         ];
 
         $request->validate($validasi, $message);
 
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $path = $file->storeAs('uploads', $nama_file, 'public');
+        } else {
+            $path = null;
+        }
+
         $report = new Report();
-        $report->title = $request->input('title');
-        $report->content = $request->input('content');
+        $report->judul_laporan = $title;
+        $report->isi_laporan = $request->input('deskripsi');
+        $report->foto_bukti = $path;
+        $report->status = 'pending';
+        $report->tanggal_laporan = now();
+        $report->id_user = $user->id();
         $report->save();
 
         return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil dibuat.');
