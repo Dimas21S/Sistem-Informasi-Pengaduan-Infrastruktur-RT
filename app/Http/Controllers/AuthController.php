@@ -42,17 +42,17 @@ class AuthController extends Controller
         $request->validate($validasi, $message);
 
         // Cek kredensial user
-        if (Auth::attempt()($request->only('email', 'password'))) {
+        if (Auth::attempt(($request->only('email', 'password')))) {
             $request->session()->regenerate();
 
             if (Auth::user()->role === Role::Warga) {
-                return redirect()->intended('/warga/dashboard')->with('success', 'Login berhasil!');
+                return redirect()->intended(route('warga.dashboard'))->with('success', 'Login berhasil!');
 
             } elseif (Auth::user()->role === Role::Petugas) {
-                return redirect()->intended('/petugas/dashboard')->with('success', 'Login berhasil!');
+                return redirect()->intended(route('petugas.dashboard'))->with('success', 'Login berhasil!');
 
             } elseif (Auth::user()->role === Role::Admin) {
-                return redirect()->intended('/admin/dashboard')->with('success', 'Login berhasil!');
+                return redirect()->intended(route('warga.dashboard'))->with('success', 'Login berhasil!');
             }
 
         return redirect()->back()->with('error', 'Email atau Password salah!');
@@ -66,7 +66,7 @@ class AuthController extends Controller
         $validasi = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8'
         ];
 
         $message = [
@@ -78,7 +78,6 @@ class AuthController extends Controller
             'email.unique' => 'Email sudah terdaftar!',
             'password.required' => 'Password wajib diisi!',
             'password.min' => 'Password minimal 8 karakter!',
-            'password.confirmed' => 'Konfirmasi password tidak sesuai!'
         ];
 
         $request->validate($validasi, $message);
@@ -91,7 +90,7 @@ class AuthController extends Controller
             'role' => Role::Warga // Set role default sebagai Warga
         ]);
 
-        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
     // Fungsi untuk logout user

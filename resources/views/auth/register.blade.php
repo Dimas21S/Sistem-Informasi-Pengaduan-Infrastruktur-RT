@@ -3,31 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login Form</title>
+  <title>Register Form</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
   <div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
+    @if (session('error'))
+      <div class="alert alert-danger">
+        {{ session('error') }}
+      </div>
+    @endif
     <h3 class="text-center mb-4">Register</h3>
     <form action="{{ route('register.post') }}" method="POST">
       @csrf
       <!-- Username / Email -->
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
+        <input type="text" class="form-control" id="name" placeholder="Masukkan nama" name="name">
       </div>
       
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Masukkan email">
+        <input type="email" class="form-control" id="email" placeholder="Masukkan email" name="email">
       </div>
 
       <!-- Password -->
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Masukkan password">
+        <input type="password" class="form-control" id="password" placeholder="Masukkan password" name="password">
       </div>
 
       <!-- Remember Me -->

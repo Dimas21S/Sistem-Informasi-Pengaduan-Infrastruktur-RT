@@ -11,18 +11,18 @@
 
   <div class="card shadow-lg p-4" style="width: 350px; border-radius: 15px;">
     <h3 class="text-center mb-4">Login</h3>
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route('login.post') }}" method="POST">
       @csrf
       <!-- Username / Email -->
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Masukkan email">
+        <input type="email" class="form-control" id="email" placeholder="Masukkan email" name="email">
       </div>
 
       <!-- Password -->
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Masukkan password">
+        <input type="password" class="form-control" id="password" placeholder="Masukkan password" name="password">
       </div>
 
       <!-- Remember Me -->

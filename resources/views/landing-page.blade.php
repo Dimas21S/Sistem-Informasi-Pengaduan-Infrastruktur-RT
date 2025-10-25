@@ -542,8 +542,8 @@
                 </div>
                 
                 <div class="nav-buttons">
-                    <a href="#" class="btn btn-outline">Masuk</a>
-                    <a href="#" class="btn btn-primary">Daftar</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline">Masuk</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Daftar</a>
                 </div>
                 
                 <div class="mobile-menu">

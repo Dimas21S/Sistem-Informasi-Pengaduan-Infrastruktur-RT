@@ -22,10 +22,19 @@ class UserController extends Controller
         return view('profil', compact('user', 'count', 'completed', 'pending', 'progress'));
     }
 
-    public function getAllUsers()
+    public function getLandingPage()
     {
-        $users = User::all();
-        return view('admin.user.index', compact('users'));
+        return view('landing-page');
+    }
+
+    public function getBerandaWarga()
+    {
+        return view('beranda');
+    }
+
+    public function getDashboardPetugas()
+    {
+        return view('pengurus.dashboard');
     }
     
 }
