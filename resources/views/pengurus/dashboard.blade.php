@@ -110,7 +110,7 @@
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Sukses</h5>
               <i class="bi bi-check-circle status-icon success-icon"></i>
-              <p class="card-text status-value">42</p>
+              <p class="card-text status-value">{{ $completed }}</p>
             </div>
           </div>
 
@@ -119,7 +119,7 @@
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Proses</h5>
               <i class="bi bi-gear status-icon process-icon"></i>
-              <p class="card-text status-value">42</p>
+              <p class="card-text status-value">{{ $progress }}</p>
             </div>
           </div>
 
@@ -128,7 +128,7 @@
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Pending</h5>
               <i class="bi bi-bookmark-x status-icon pending-icon"></i>
-              <p class="card-text status-value">42</p>
+              <p class="card-text status-value">{{ $pending }}</p>
             </div>
           </div>
         </div>
@@ -143,14 +143,17 @@
     @stack('scripts')
     @push('scripts')
       <script>
+        const labels = @json($label);
+        const data = @json($data);
+        
         const ctx = document.getElementById('lineChart').getContext('2d');
         const lineChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: labels,
             datasets: [{
               label: 'Laporan',
-              data: [65, 59, 80, 81, 56, 55, 40],
+              data: data,
               borderColor: '#0d6efd',
               backgroundColor: 'rgba(13, 110, 253, 0.2)',
               pointStyle: 'circle',

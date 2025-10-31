@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('foto_bukti')->nullable();
             $table->enum('status', ['pending', 'progress', 'completed'])->default('pending');
             $table->date('tanggal_laporan')->default(now());
+            $table->date('bulan_laporan')->nullable();
             $table->timestamps();
         });
     }
