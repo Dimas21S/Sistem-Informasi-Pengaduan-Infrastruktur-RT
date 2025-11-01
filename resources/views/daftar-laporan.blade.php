@@ -235,14 +235,14 @@
             <p class="text-muted mb-0">Kelola dan pantau semua laporan Anda di satu tempat</p>
           </div>
           <div class="header-actions">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" onClick="location.href='{{ route('form-laporan') }}'">
               <i class="bi bi-plus-circle me-1"></i> Buat Laporan Baru
             </button>
           </div>
         </div>
         
         <!-- Statistik Cepat -->
-        <div class="row mb-4">
+        {{-- <div class="row mb-4">
           <div class="col-md-3 col-sm-6">
             <div class="stats-card bg-light">
               <div class="stats-number text-primary">24</div>
@@ -267,7 +267,7 @@
               <div class="stats-label">Menunggu</div>
             </div>
           </div>
-        </div>
+        </div> --}}
         
         <!-- Filter dan Pencarian -->
         <div class="filter-section">

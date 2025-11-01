@@ -14,10 +14,6 @@ Route::get('/daftar-laporan', function () {
     return view('daftar-laporan');
 })->name('daftar-laporan');
 
-Route::get('/profil', function () {
-    return view('profil');
-})->name('profil');
-
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'getLogin')->name('login');
@@ -28,7 +24,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(LaporanController::class)->group(function () {
-    Route::get('/beranda', 'viewBeranda')->name('beranda');
     Route::get('/daftar-laporan', 'showLaporan')->name('daftar-laporan');
     Route::get('/detail-laporan/{id}', 'detailLaporan')->name('detail-laporan');
     Route::get('/form-laporan', 'getFormLaporan')->name('form-laporan');

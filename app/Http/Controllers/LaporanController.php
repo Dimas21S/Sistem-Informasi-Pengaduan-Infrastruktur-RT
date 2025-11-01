@@ -6,20 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Report;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
 {
-    public function viewBeranda()
-    {
-        $reports = Report::all();
-        $firstReport = $reports->first();
-        $completed = $reports->where('status', 'completed')->count();
-        $pending = $reports->where('status', 'pending')->count();
-        $progress = $reports->where('status', 'progress')->count();
-        return view('beranda', compact('completed', 'pending', 'progress', 'firstReport'));
-    }
-
-
     //fungsi untuk menampilkan daftar laporan
     public function showLaporan()
     {
@@ -47,7 +37,7 @@ class LaporanController extends Controller
     // Fungsi untuk menyimpan laporan baru
     public function postLaporan(Request $request)
     {
-        $user = Report::user();
+        $user = Auth::user();
 
         $title = 'Laporan ID ' . (Report::max('id_laporan') + 1);
         
@@ -81,7 +71,7 @@ class LaporanController extends Controller
         $report->foto_bukti = $path;
         $report->status = 'pending';
         $report->tanggal_laporan = now();
-        $report->id_user = $user->id();
+        $report->user_id = $user->id;
         $report->save();
 
         return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil dibuat.');
@@ -155,28 +145,28 @@ class LaporanController extends Controller
     //     return view('laporan-saya', compact('reports'));
     // }
 
-    public function grafikLaporan()
-    {
-        // Ambil jumlah laporan per bulan
-        $data = Report::selectRaw('MONTH(tanggal_laporan) as bulan, COUNT(*) as total')
-            ->groupBy('bulan')
-            ->orderBy('bulan')
-            ->get();
+    // public function grafikLaporan()
+    // {
+    //     // Ambil jumlah laporan per bulan
+    //     $data = Report::selectRaw('MONTH(tanggal_laporan) as bulan, COUNT(*) as total')
+    //         ->groupBy('bulan')
+    //         ->orderBy('bulan')
+    //         ->get();
 
-        // Konversi angka bulan menjadi nama bulan
-        $label = $data->map(function ($item) {
-            return \Carbon\Carbon::create()->month($item->bulan)->locale('id')->monthName;
-        });
+    //     // Konversi angka bulan menjadi nama bulan
+    //     $label = $data->map(function ($item) {
+    //         return \Carbon\Carbon::create()->month($item->bulan)->locale('id')->monthName;
+    //     });
 
-        $values = $data->pluck('total');
+    //     $values = $data->pluck('total');
 
-        // Hitung total berdasarkan status
-        $completed = Report::where('status', 'completed')->count();
-        $pending   = Report::where('status', 'pending')->count();
-        $progress  = Report::where('status', 'progress')->count();
+    //     // Hitung total berdasarkan status
+    //     $completed = Report::where('status', 'completed')->count();
+    //     $pending   = Report::where('status', 'pending')->count();
+    //     $progress  = Report::where('status', 'progress')->count();
 
-        // Kirim data ke Blade
-        return view('pengurus.dashboard', compact('completed', 'pending', 'progress', 'label', 'values'));
-    }
+    //     // Kirim data ke Blade
+    //     return view('pengurus.dashboard', compact('completed', 'pending', 'progress', 'label', 'values'));
+    // }
 
 }

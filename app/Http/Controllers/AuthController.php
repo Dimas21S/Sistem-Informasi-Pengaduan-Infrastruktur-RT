@@ -44,6 +44,7 @@ class AuthController extends Controller
         // Cek kredensial user
         if (Auth::attempt(($request->only('email', 'password')))) {
             $request->session()->regenerate();
+            // dd(Auth::user()->role);
 
             if (Auth::user()->role === Role::Warga) {
                 return redirect()->intended(route('warga.dashboard'))->with('success', 'Login berhasil!');
@@ -55,8 +56,9 @@ class AuthController extends Controller
                 return redirect()->intended(route('warga.dashboard'))->with('success', 'Login berhasil!');
             }
 
-        return redirect()->back()->with('error', 'Email atau Password salah!');
         }
+        return redirect()->back()->with('error', 'Email atau Password salah!');
+
     }
 
     // Fungsi untuk register user

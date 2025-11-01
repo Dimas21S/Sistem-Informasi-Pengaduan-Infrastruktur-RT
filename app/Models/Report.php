@@ -18,7 +18,7 @@ class Report extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class);
     }
 
     protected static function boot()

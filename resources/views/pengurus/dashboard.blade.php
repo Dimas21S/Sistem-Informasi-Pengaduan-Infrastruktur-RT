@@ -9,6 +9,7 @@
     <style>
       body {
         overflow-x: hidden;
+        background-color: #f8f9fa;
       }
       #sidebar {
         min-height: 100vh;
@@ -80,6 +81,15 @@
         color: #dc3545;
       }
       
+      /* Chart container */
+      .chart-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
       @media (max-width: 768px) {
         #sidebar {
           width: 100% !important;
@@ -87,10 +97,15 @@
         }
         #content {
           width: 100%;
+          padding: 15px;
         }
         .card-container {
           flex-direction: column;
           align-items: center;
+        }
+        .status-card {
+          width: 100%;
+          max-width: 18rem;
         }
       }
     </style>
@@ -133,18 +148,21 @@
           </div>
         </div>
           
-
-        {{-- Line chart yang bisa diganti sesuai card --}}
-        <canvas id="lineChart" width="400" height="150"></canvas>
+        <!-- Chart container -->
+        <div class="chart-container">
+          <canvas id="lineChart" width="400" height="150"></canvas>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js" integrity="sha512-n/G+dROKbKL3GVngGWmWfwK0yPctjZQM752diVYnXZtD/48agpUKLIn0xDQL9ydZ91x6BiOmTIFwWjjFi2kEFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @stack('scripts')
-    @push('scripts')
-      <script>
+    
+    <script>
+      // Script untuk chart dipindahkan ke sini
+      document.addEventListener('DOMContentLoaded', function() {
         const labels = @json($label);
-        const data = @json($data);
+        const data = @json($values);
         
         const ctx = document.getElementById('lineChart').getContext('2d');
         const lineChart = new Chart(ctx, {
@@ -175,7 +193,7 @@
             }
           }
         });
-      </script>
-    @endpush
+      });
+    </script>
   </body>
 </html>

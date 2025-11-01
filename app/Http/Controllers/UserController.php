@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Models\Report;
 
 class UserController extends Controller
 {
@@ -29,12 +30,36 @@ class UserController extends Controller
 
     public function getBerandaWarga()
     {
-        return view('beranda');
+        $reports = Report::all();
+        $firstReport = $reports->first();
+        $completed = $reports->where('status', 'completed')->count();
+        $pending = $reports->where('status', 'pending')->count();
+        $progress = $reports->where('status', 'progress')->count();
+        return view('beranda', compact('completed', 'pending', 'progress', 'firstReport'));
     }
 
     public function getDashboardPetugas()
     {
-        return view('pengurus.dashboard');
+        // Ambil jumlah laporan per bulan
+        $data = Report::selectRaw('MONTH(tanggal_laporan) as bulan, COUNT(*) as total')
+            ->groupBy('bulan')
+            ->orderBy('bulan')
+            ->get();
+
+        // Konversi angka bulan menjadi nama bulan
+        $label = $data->map(function ($item) {
+            return \Carbon\Carbon::create()->month($item->bulan)->locale('id')->monthName;
+        });
+
+        $values = $data->pluck('total');
+
+        // Hitung total berdasarkan status
+        $completed = Report::where('status', 'completed')->count();
+        $pending   = Report::where('status', 'pending')->count();
+        $progress  = Report::where('status', 'progress')->count();
+
+        // Kirim data ke Blade
+        return view('pengurus.dashboard', compact('completed', 'pending', 'progress', 'label', 'values', 'data'));
     }
     
 }

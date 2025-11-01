@@ -15,7 +15,7 @@
   <hr> 
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <x-navlink href="{{ route('beranda') }}" :active="request()->routeIs('beranda')" icon="bi bi-house-door-fill">Beranda</x-navlink>
+      <x-navlink href="{{ route('warga.dashboard') }}" :active="request()->routeIs('warga.dashboard')" icon="bi bi-house-door-fill">Beranda</x-navlink>
     </li>
     <li>
       <x-navlink href="{{ route('daftar-laporan') }}" :active="request()->routeIs('daftar-laporan')" icon="bi bi-card-list">Daftar Laporan</x-navlink>

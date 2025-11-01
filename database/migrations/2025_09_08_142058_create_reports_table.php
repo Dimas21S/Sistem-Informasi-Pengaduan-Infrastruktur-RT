@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id('id_laporan');
-            $table->integer('id_user')->constraint('users', 'id')->onDelete('cascade');
+            $table->integer('user_id')->constraint('users')->onDelete('cascade');
             $table->string('judul_laporan');
             $table->text('isi_laporan');
             $table->string('foto_bukti')->nullable();
