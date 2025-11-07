@@ -28,6 +28,9 @@ Route::controller(LaporanController::class)->group(function () {
     Route::get('/detail-laporan/{id}', 'detailLaporan')->name('detail-laporan');
     Route::get('/form-laporan', 'getFormLaporan')->name('form-laporan');
     Route::post('/form-laporan', 'postLaporan')->name('form-laporan.post');
+    Route::get('/edit-laporan/{id}', 'getEditLaporan')->name('edit-laporan');
+    Route::post('/edit-laporan/{id}', 'postEditLaporan')->name('edit-laporan.post');
+    Route::post('/delete-laporan/{id}', 'postDeleteLaporan')->name('delete-laporan.post');
 });
 
 Route::controller(UserController::class)->group(function () {

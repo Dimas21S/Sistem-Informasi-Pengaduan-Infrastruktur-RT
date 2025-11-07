@@ -668,7 +668,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    {{-- <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
@@ -717,7 +717,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- CTA Section -->
     <section class="cta">
@@ -726,7 +726,7 @@
             <p>Bergabunglah dengan ratusan warga lainnya yang telah menggunakan SIPIR untuk memperbaiki infrastruktur RT mereka</p>
             <div class="cta-buttons">
                 <a href="#" class="btn btn-light">Laporkan Sekarang</a>
-                <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Lihat Demo</a>
+                <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Buat akun</a>
             </div>
         </div>
     </section>

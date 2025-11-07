@@ -19,7 +19,7 @@ class LaporanController extends Controller
     }
 
     //fungsi untuk menampilkan detail laporan
-    public function detailLaporan($id)
+    public function getDetailLaporan($id)
     {
         $report = Report::find($id);
         if (!$report) {
@@ -78,7 +78,7 @@ class LaporanController extends Controller
     }
 
     // Fungsi untuk menghapus laporan
-    public function deleteLaporan($id)
+    public function postDeleteLaporan($id)
     {
         $report = Report::find($id);
         if (!$report) {
@@ -91,17 +91,17 @@ class LaporanController extends Controller
     }
 
     // Fungsi untuk menampilkan form edit laporan
-    public function editLaporan($id)
+    public function getEditLaporan($id)
     {
         $report = Report::find($id);
         if (!$report) {
             return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
         }
-        return view('edit-laporan', compact('report'));
+        return view('auth.edit-laporan', compact('report'));
     }
 
     // Fungsi untuk memperbarui laporan
-    public function updateLaporan(Request $request, $id)
+    public function postEditLaporan(Request $request, $id)
     {
         $report = Report::find($id);
         if (!$report) {

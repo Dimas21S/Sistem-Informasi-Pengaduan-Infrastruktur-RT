@@ -241,34 +241,6 @@
           </div>
         </div>
         
-        <!-- Statistik Cepat -->
-        {{-- <div class="row mb-4">
-          <div class="col-md-3 col-sm-6">
-            <div class="stats-card bg-light">
-              <div class="stats-number text-primary">24</div>
-              <div class="stats-label">Total Laporan</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="stats-card bg-light">
-              <div class="stats-number text-success">18</div>
-              <div class="stats-label">Selesai</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="stats-card bg-light">
-              <div class="stats-number text-warning">4</div>
-              <div class="stats-label">Dalam Proses</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="stats-card bg-light">
-              <div class="stats-number text-danger">2</div>
-              <div class="stats-label">Menunggu</div>
-            </div>
-          </div>
-        </div> --}}
-        
         <!-- Filter dan Pencarian -->
         <div class="filter-section">
           <div class="row">
