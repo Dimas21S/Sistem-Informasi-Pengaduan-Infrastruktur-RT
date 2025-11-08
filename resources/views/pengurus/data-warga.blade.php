@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Laporan</title>
+    <title>Kelola Data Warga</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
@@ -102,83 +102,46 @@
 
       <!-- Konten Utama -->
       <div id="content" class="flex-grow-1">
-        <h2 class="mb-4">Dashboard Laporan</h2>
-        
-        <div class="card-container d-flex flex-wrap justify-content-center">
-          <!-- Card laporan sukses -->
-          <div class="card status-card success-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Sukses</h5>
-              <i class="bi bi-check-circle status-icon success-icon"></i>
-              <p class="card-text status-value">42</p>
-            </div>
-          </div>
-
-          <!-- Card laporan proses -->
-          <div class="card status-card process-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Proses</h5>
-              <i class="bi bi-gear status-icon process-icon"></i>
-              <p class="card-text status-value">42</p>
-            </div>
-          </div>
-
-          <!-- Card laporan pending -->
-          <div class="card status-card pending-card">
-            <div class="card-body status-card-body">
-              <h5 class="card-title status-title">Status: Pending</h5>
-              <i class="bi bi-bookmark-x status-icon pending-icon"></i>
-              <p class="card-text status-value">42</p>
-            </div>
-          </div>
-        </div>
+        <h2 class="mb-4">Kelola Data Warga</h2>
           
         <table class="table table-striped mt-4 table-hover">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nama Pelapor</th>
-                    <th scope="col">Judul Laporan</th>
-                    <th scope="col">Tanggal Laporan</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col">Nama Warga</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Peran</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">1</th>
                     <td>John Doe</td>
-                    <td>Jalan Rusak di RT 05</td>
-                    <td>2024-01-15</td>
-                    <td><span class="badge bg-success">Sukses</span></td>
+                    <td>Jhondoe@gmail.com</td>
+                    <td>Warga</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
                         <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Jane Smith</td>
-                    <td>Pohon Tumbang di Jalan Merdeka</td>
-                    <td>2024-01-16</td>
-                    <td><span class="badge bg-warning text-dark">Proses</span></td>
+                    <td>Jane@gmail.com</td>
+                    <td>Warga</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
                         <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Ahmad Fauzi</td>
-                    <td>Sampah Menumpuk di RT 03</td>
-                    <td>2024-01-17</td>
-                    <td><span class="badge bg-danger">Pending</span></td>
+                    <td>Fauzi@gmail.com</td>
+                    <td>Warga</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
                         <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                 </tr>
             </tbody>
