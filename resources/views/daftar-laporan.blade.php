@@ -275,47 +275,49 @@
         
         <!-- Daftar Laporan -->
         <div class="row">
-          <!-- Laporan 1 -->
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
-              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button class="btn btn-primary">Go somewhere</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
-              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button class="btn btn-primary">Go somewhere</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
-              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button class="btn btn-primary">Go somewhere</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card border border-dark px-1 py-1 shadow-sm h-100" style="width: 18rem; background: transparent;">
-              <img src="{{ asset('image/Wa.jpg') }}" class="card-img-top" alt="WhatsApp" style="object-fit:cover; height: 200px;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button class="btn btn-primary">Go somewhere</button>
-              </div>
-            </div>
-          </div>
+
+              @foreach ($reports as $report)
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+                  <div class="card shadow-sm border-0 h-100" style="border-radius: 15px; overflow: hidden; background-color: #fdfdfd;">
+                    
+                    {{-- Gambar laporan --}}
+                    <div class="position-relative">
+                      <img src="{{ asset('image/Wa.jpg') }}" 
+                          class="card-img-top" 
+                          alt="Foto Laporan" 
+                          style="object-fit: cover; height: 200px;">
+                      
+                      {{-- Badge status di pojok atas gambar --}}
+                      <div class="position-absolute top-0 end-0 m-2">
+                        @if ($report->status === 'completed')
+                          <span class="badge bg-success shadow">Sukses</span>
+                        @elseif ($report->status === 'progress')
+                          <span class="badge bg-warning text-dark shadow">Diproses</span>
+                        @elseif ($report->status === 'pending')
+                          <span class="badge bg-danger shadow">Menunggu</span>
+                        @else
+                          <span class="badge bg-secondary shadow">Belum Diketahui</span>
+                        @endif
+                      </div>
+                    </div>
+
+                    {{-- Isi kartu --}}
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 class="card-title fw-semibold text-dark mb-2">{{ $report->judul_laporan }}</h5>
+                        <p class="card-text text-muted small mb-3">{{ Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) }}</p>
+                      </div>
+
+                      <div class="mt-auto text-end">
+                        <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" class="btn btn-sm btn-outline-primary px-3 py-2 rounded-pill">
+                          <i class="bi bi-eye-fill me-1"></i> Lihat Detail
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              @endforeach
 
         <!-- Pagination -->
         <nav aria-label="Page navigation" class="mt-4">

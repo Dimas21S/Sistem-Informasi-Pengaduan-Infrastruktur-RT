@@ -304,12 +304,12 @@
             <div class="meta-info">
                 <div class="author-avatar">AF</div>
                 <div class="author-info">
-                    <span class="author-name">Ahmad Fauzi</span>
-                    <span class="post-date">15 Oktober 2023 · 8 min read</span>
+                    <span class="author-name">{{ $report->user->name }}</span>
+                    <span class="post-date">{{ $report->tanggal_laporan }} · 8 min read</span>
                 </div>
             </div>
             
-            <h1 class="title">Kerusakan Jembatan Penghubung Desa Sukamaju: Analisis dan Langkah Penanganan</h1>
+            <h1 class="title">{{ $report->judul_laporan }} </h1>
             
             <p class="subtitle">Laporan lengkap mengenai kerusakan infrastruktur jembatan yang menghubungkan Desa Sukamaju dan Desa Sukarami beserta rencana penanganannya.</p>
             
@@ -323,10 +323,12 @@
         
         <div class="featured-image">
             <i class="fas fa-image fa-3x"></i>
+            <img src="{{ asset('image/Wa.jpg') }}" >
             <span style="margin-left: 10px;">Gambar Jembatan yang Rusak</span>
         </div>
         
         <div class="content">
+            <p>{{ $report->isi_laporan }}</p>
             <p>Jembatan penghubung antara Desa Sukamaju dan Desa Sukarami mengalami kerusakan parah pada bagian struktur penyangga. Kerusakan ini terjadi akibat banjir bandang yang melanda daerah tersebut seminggu yang lalu. Saat ini, akses transportasi antara kedua desa terputus total, mengganggu aktivitas ekonomi dan sosial warga.</p>
             
             <p>Kerusakan terlihat pada pilar jembatan bagian tengah yang retak dan miring sekitar 15 derajat. Permukaan jembatan juga sudah tidak rata dan berpotensi membahayakan pengendara jika dipaksakan untuk dilintasi.</p>

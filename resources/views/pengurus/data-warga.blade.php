@@ -110,40 +110,25 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nama Warga</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Bergabung</th>
                     <th scope="col">Peran</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
+              @foreach ( $warga as $item )
                 <tr>
-                    <th scope="row">1</th>
-                    <td>John Doe</td>
-                    <td>Jhondoe@gmail.com</td>
-                    <td>Warga</td>
+                    <th scope="row">{{ $item->id }}</th>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>22-22-22</td>
+                    <td>{{ $item->role }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
                         <button class="btn btn-warning btn-sm">Edit</button>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jane Smith</td>
-                    <td>Jane@gmail.com</td>
-                    <td>Warga</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Ahmad Fauzi</td>
-                    <td>Fauzi@gmail.com</td>
-                    <td>Warga</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                    </td>
-                </tr>
+              @endforeach
             </tbody>
         </table>
     </div>

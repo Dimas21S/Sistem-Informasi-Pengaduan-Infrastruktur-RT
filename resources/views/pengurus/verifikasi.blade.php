@@ -145,42 +145,20 @@
                 </tr>
             </thead>
             <tbody>
+              @foreach ( $laporan as $item )
                 <tr>
                     <th scope="row">1</th>
-                    <td>John Doe</td>
-                    <td>Jalan Rusak di RT 05</td>
-                    <td>2024-01-15</td>
-                    <td><span class="badge bg-success">Sukses</span></td>
+                    <td>{{ $item->user->name }}</td>
+                    <td>{{ $item->judul_laporan }}</td>
+                    <td>{{ $item->tanggal_laporan }}</td>
+                    <td><span class="badge bg-success">{{ $item->status }}</span></td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
                         <button class="btn btn-warning btn-sm">Edit</button>
                         <button class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jane Smith</td>
-                    <td>Pohon Tumbang di Jalan Merdeka</td>
-                    <td>2024-01-16</td>
-                    <td><span class="badge bg-warning text-dark">Proses</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Ahmad Fauzi</td>
-                    <td>Sampah Menumpuk di RT 03</td>
-                    <td>2024-01-17</td>
-                    <td><span class="badge bg-danger">Pending</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
+              @endforeach
             </tbody>
         </table>
     </div>

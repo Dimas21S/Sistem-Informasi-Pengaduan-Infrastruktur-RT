@@ -136,37 +136,22 @@ class LaporanController extends Controller
         return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil diperbarui.');
     }
 
-    // Fungsi untuk menampilkan laporan milik user yang sedang login
-    // public function laporanSaya()
-    // {
-    //     $user = Report::user();
-    //     $reports = Report::where('id_user', $user->id())->get();
+    // Fungsi untuk menampilkan tampilan daftar status laporan
+    public function getStatusLaporan()
+    {
+        $laporan = Report::get()->all();
 
-    //     return view('laporan-saya', compact('reports'));
-    // }
+        return view('pengurus.verifikasi', compact('laporan'));
+    }
 
-    // public function grafikLaporan()
-    // {
-    //     // Ambil jumlah laporan per bulan
-    //     $data = Report::selectRaw('MONTH(tanggal_laporan) as bulan, COUNT(*) as total')
-    //         ->groupBy('bulan')
-    //         ->orderBy('bulan')
-    //         ->get();
+    public function postStatusLaporan(Request $request, $id)
+    {
+        $laporan = Report::findOrFail($id);
+        
+        $laporan->status = $request->input('status');
+        $laporan->save();
 
-    //     // Konversi angka bulan menjadi nama bulan
-    //     $label = $data->map(function ($item) {
-    //         return \Carbon\Carbon::create()->month($item->bulan)->locale('id')->monthName;
-    //     });
-
-    //     $values = $data->pluck('total');
-
-    //     // Hitung total berdasarkan status
-    //     $completed = Report::where('status', 'completed')->count();
-    //     $pending   = Report::where('status', 'pending')->count();
-    //     $progress  = Report::where('status', 'progress')->count();
-
-    //     // Kirim data ke Blade
-    //     return view('pengurus.dashboard', compact('completed', 'pending', 'progress', 'label', 'values'));
-    // }
+        return redirect()->back()->with('success', 'Status laporan telah berhasil diubah');
+    }
 
 }

@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class AdminController extends Controller
+{
+    // Fungsi untuk menampilkan daftar warga dan role-nya
+    public function getWargaRole()
+    {
+        $warga = User::get()->all();
+
+        return view('pengurus.data-warga', compact('warga'));
+    }
+
+    // Fungsi untuk mengubah role warga
+    public function postWargaRole(Request $request, $id)
+    {
+        $warga = User::findOrFail($id);
+
+        $warga->role = $request->input('role');
+        $warga->save();
+
+        return back()->with('success', 'Role berhasil diubah');
+    }
+}
