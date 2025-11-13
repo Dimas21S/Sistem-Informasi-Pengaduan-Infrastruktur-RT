@@ -74,7 +74,7 @@ class LaporanController extends Controller
         $report->user_id = $user->id;
         $report->save();
 
-        return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil dibuat.');
+        return redirect()->back()->with('success', 'Laporan berhasil dibuat.');
     }
 
     // Fungsi untuk menghapus laporan
@@ -144,7 +144,7 @@ class LaporanController extends Controller
         return view('pengurus.verifikasi', compact('laporan'));
     }
 
-    public function postStatusLaporan(Request $request, $id)
+    public function postStatusLaporan(Request $request)
     {
         $request->validate([
             'status' => 'required|in:pending,progress,completed',

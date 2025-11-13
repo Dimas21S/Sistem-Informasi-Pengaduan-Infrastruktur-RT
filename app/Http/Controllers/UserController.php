@@ -97,7 +97,9 @@ class UserController extends Controller
             return \Carbon\Carbon::create()->month($item->bulan)->locale('id')->monthName;
         });
 
-        $values = $data->pluck('total');
+        $label = $label->toArray();
+
+        $values = $data->pluck('total')->toArray();
 
         // Hitung total berdasarkan status
         $completed = Report::where('status', 'completed')->count();

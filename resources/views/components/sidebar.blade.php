@@ -36,13 +36,13 @@
         @break
       @case(UserRole::Petugas)
         <li class="nav-item">
-          <x-navlink href="{{ route('warga.dashboard') }}" :active="request()->routeIs('warga.dashboard')" icon="bi bi-house-door-fill">Beranda</x-navlink>
+          <x-navlink href="{{ route('petugas.dashboard') }}" :active="request()->routeIs('petugas.dashboard')" icon="bi bi-house-door-fill">Dashboard</x-navlink>
         </li>
         <li>
           <x-navlink href="{{ route('daftar-laporan') }}" :active="request()->routeIs('daftar-laporan')" icon="bi bi-card-list">Daftar Laporan</x-navlink>
         </li>
         <li>
-          <x-navlink href="{{ route('daftar-laporan') }}" :active="request()->routeIs('daftar-laporan')" icon="bi bi-card-list">Daftar Laporan</x-navlink>
+          <x-navlink href="{{ route('get-verifikasi') }}" :active="request()->routeIs('get-verifikasi')" icon="bi bi-card-list">Verifikasi Laporan</x-navlink>
         </li>
         <li>
           <x-navlink href="{{ route('profil') }}" :active="request()->routeIs('profil')" icon="bi bi-person-fill">Profil</x-navlink>
@@ -64,7 +64,7 @@
   </ul>
   <hr>
   <div class="dropdown">
-    <a href="#" class="d-flex align-items-center link-dark text-decoration-none">
+    <a href="#" class="d-flex align-items-center link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalLogout">
       <i class="bi bi-box-arrow-left me-2"></i>
       Log Out
     </a>

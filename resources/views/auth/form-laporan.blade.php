@@ -47,11 +47,6 @@
             color: #555;
             font-weight: 500;
         }
-        .ck-editor {
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
         .ck-editor__editable {
             min-height: 200px;
             padding: 12px 15px;
@@ -119,15 +114,6 @@
             margin-top: 5px;
             display: none;
         }
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
         @media (max-width: 480px) {
             .container { padding: 30px 20px; }
             h1 { font-size: 22px; }
@@ -138,17 +124,11 @@
     <div class="container">
         <h1>Buat Laporan</h1>
         
-        <div class="success-message" id="successMessage">
-            Laporan berhasil dikirim!
-        </div>
-        
         <form id="laporanForm" action="{{ route('form-laporan.post') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <div id="editor-container">
-                    <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan laporan Anda..." maxlength="500" style="display:none;"></textarea>
-                </div>
+                <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan laporan Anda..." maxlength="500"></textarea>
                 <div class="char-count"><span id="charCount">0</span>/500</div>
                 <div class="error-message" id="deskripsiError">Deskripsi tidak boleh kosong</div>
             </div>
@@ -159,7 +139,7 @@
                     <div class="upload-icon">📷</div>
                     <div class="upload-text">Unggah foto</div>
                     <div class="upload-subtext">Klik untuk memilih file (Maks. 5MB)</div>
-                    <input type="file" id="foto" name="foto" class="file-input" accept="image/*">
+                    <input type="file" id="foto" name="foto" class="file-input" accept="image/png, image/jpeg, image/jpg">
                 </div>
                 <div class="preview-container" id="previewContainer">
                     <img src="" alt="Pratinjau Foto" class="preview-image" id="previewImage">
@@ -180,20 +160,18 @@
         const previewContainer = document.getElementById('previewContainer');
         const previewImage = document.getElementById('previewImage');
         const deskripsiError = document.getElementById('deskripsiError');
-        const successMessage = document.getElementById('successMessage');
         const charCount = document.getElementById('charCount');
 
         // Inisialisasi CKEditor
         ClassicEditor
-            .create(document.querySelector('#editor-container'), {
+            .create(document.querySelector('#deskripsi'), {
                 toolbar: [
                     'undo', 'redo', '|', 'heading', '|',
                     'bold', 'italic', 'underline', 'link', '|',
                     'bulletedList', 'numberedList', '|',
                     'alignment', 'blockQuote', 'insertTable'
                 ],
-                placeholder: 'Jelaskan laporan Anda...',
-                height: '200px'
+                placeholder: 'Jelaskan laporan Anda...'
             })
             .then(newEditor => {
                 editor = newEditor;
@@ -203,10 +181,7 @@
                     const data = editor.getData();
                     const textContent = data.replace(/<[^>]*>/g, '');
                     charCount.textContent = textContent.length;
-                    
-                    // Update textarea tersembunyi untuk form submission
-                    document.getElementById('deskripsi').value = data;
-                    
+
                     // Sembunyikan error jika ada konten
                     if (textContent.trim().length > 0) {
                         deskripsiError.style.display = 'none';
@@ -237,40 +212,27 @@
             }
         });
 
-        // Validasi form
+        // Validasi form sebelum dikirim
         document.getElementById('laporanForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             const data = editor.getData();
             const textContent = data.replace(/<[^>]*>/g, '');
             
             if (textContent.trim().length === 0) {
+                e.preventDefault();
                 deskripsiError.style.display = 'block';
                 return;
             }
-            
-            // Jika validasi berhasil, tampilkan pesan sukses
-            successMessage.style.display = 'block';
-            
-            // Reset form setelah 2 detik (simulasi)
-            setTimeout(() => {
-                this.reset();
-                editor.setData('');
-                charCount.textContent = '0';
-                previewContainer.style.display = 'none';
-                successMessage.style.display = 'none';
-            }, 2000);
+
+            // Masukkan konten editor ke textarea sebelum submit
+            document.getElementById('deskripsi').value = data;
         });
 
         // Reset form
         document.getElementById('laporanForm').addEventListener('reset', function() {
-            if (editor) {
-                editor.setData('');
-            }
+            if (editor) editor.setData('');
             charCount.textContent = '0';
             previewContainer.style.display = 'none';
             deskripsiError.style.display = 'none';
-            successMessage.style.display = 'none';
         });
     </script>
 </body>
