@@ -18,14 +18,15 @@ class AdminController extends Controller
     // Fungsi untuk mengubah role warga
     public function postWargaRole(Request $request)
     {
+        // dd($request->all());
+
         $request->validate([
-            'role' => 'required|in:Warga, Petugas, Admin',
+        'id' => 'required|exists:users,id',
+        'role' => 'required|in:Warga,Petugas,Admin',
         ]);
 
         $warga = User::findOrFail($request->id);
-
-        $warga->role = $request->role;
-        $warga->save();
+        $warga->update(['role' => $request->role]);
 
         return back()->with('success', 'Role berhasil diubah');
     }

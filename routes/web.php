@@ -41,5 +41,5 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/warga-role', 'getWargaRole')->name('get-role');
-    Route::put('/warga-role', 'postWargaRole')->name('post-role');
+    Route::post('/warga-role', 'postWargaRole')->name('post-role');
 });

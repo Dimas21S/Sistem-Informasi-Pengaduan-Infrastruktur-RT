@@ -142,9 +142,8 @@
       <div class="modal-dialog">
           <form class="modal-content" method="POST" action="{{ route('post-role') }}">
             @csrf
-            @method('PUT')
-
-            <input type="hidden" name="user_id" id="user_id" value="">
+            
+            <input type="hidden" name="id" id="editId">
               <div class="modal-content">
                 <div class="modal-header"> 
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Role Warga</h1>
@@ -156,9 +155,9 @@
                   <div class="mb-3">
                     <label for="editRole" class="form-label">Pilih Role Baru</label>
                     <select name="role" id="editRole" class="form-select" required>
-                      <option value="warga">Warga</option>
-                      <option value="petugas">Petugas</option>
-                      <option value="admin">Admin</option>
+                      <option value="Warga">Warga</option>
+                      <option value="Petugas">Petugas</option>
+                      <option value="Admin">Admin</option>
                     </select>
                   </div>
                 </div>
