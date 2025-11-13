@@ -125,7 +125,12 @@
                     <td>{{ $item->role }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
+                        <button class="btn btn-warning btn-sm editBtn" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal" 
+                        data-user-id="{{ $item->id }}" 
+                        data-user-name="{{ $item->name }}" 
+                        data-user-role="{{ $item->role }}">Edit</button>
                     </td>
                 </tr>
               @endforeach
@@ -133,6 +138,59 @@
         </table>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <form class="modal-content" method="POST" action="{{ route('post-role') }}">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" name="user_id" id="user_id" value="">
+              <div class="modal-content">
+                <div class="modal-header"> 
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Role Warga</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Nama:</strong> <span id="editName"></span></p>
+                  
+                  <div class="mb-3">
+                    <label for="editRole" class="form-label">Pilih Role Baru</label>
+                    <select name="role" id="editRole" class="form-select" required>
+                      <option value="warga">Warga</option>
+                      <option value="petugas">Petugas</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+      const editButtons = document.querySelectorAll('.editBtn');
+      const editId = document.getElementById('editId');
+      const editName = document.getElementById('editName');
+      const editRole = document.getElementById('editRole');
+
+      editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const id = button.getAttribute('data-user-id');
+          const name = button.getAttribute('data-user-name');
+          const role = button.getAttribute('data-user-role');
+
+          editId.value = id;
+          editName.textContent = name;
+          editRole.value = role;
+        });
+      });
+    </script>
   </body>
 </html>

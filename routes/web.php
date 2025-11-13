@@ -28,8 +28,8 @@ Route::controller(LaporanController::class)->group(function () {
     Route::get('/edit-laporan/{id}', 'getEditLaporan')->name('edit-laporan');
     Route::post('/edit-laporan/{id}', 'postEditLaporan')->name('edit-laporan.post');
     Route::post('/delete-laporan/{id}', 'postDeleteLaporan')->name('delete-laporan.post');
-    Route::get('/verifikasi-laporan/{id}', 'getStatusLaporan')->name('get-verifikasi');
-    Route::get('/verifikasi-laporan/{id}', 'postStatusLaporan')->name('post-verifikasi');
+    Route::get('/verifikasi-laporan', 'getStatusLaporan')->name('get-verifikasi');
+    Route::put('/verifikasi-laporan', 'postStatusLaporan')->name('post-verifikasi');
 });
 
 Route::controller(UserController::class)->group(function () {
@@ -41,5 +41,5 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/warga-role', 'getWargaRole')->name('get-role');
-    Route::get('/warga-role/{id}', 'postWargaRole')->name('post-role');
+    Route::put('/warga-role', 'postWargaRole')->name('post-role');
 });

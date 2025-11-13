@@ -146,9 +146,13 @@ class LaporanController extends Controller
 
     public function postStatusLaporan(Request $request, $id)
     {
-        $laporan = Report::findOrFail($id);
+        $request->validate([
+            'status' => 'required|in:pending,progress,completed',
+        ]);
+
+        $laporan = Report::findOrFail($request->id);
         
-        $laporan->status = $request->input('status');
+        $laporan->status = $request->status;
         $laporan->save();
 
         return redirect()->back()->with('success', 'Status laporan telah berhasil diubah');

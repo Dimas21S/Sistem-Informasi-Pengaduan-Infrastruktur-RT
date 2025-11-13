@@ -154,8 +154,12 @@
                     <td><span class="badge bg-success">{{ $item->status }}</span></td>
                     <td>
                         <button class="btn btn-primary btn-sm">Lihat</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
+                        <button class="btn btn-warning btn-sm"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal" 
+                        data-report-id="{{ $item->id }}" 
+                        data-report-judul="{{ $item->judul_laporan }}" 
+                        data-report-status="{{ $item->status }}">Edit</button>
                     </td>
                 </tr>
               @endforeach
@@ -163,6 +167,59 @@
         </table>
     </div>
 
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <form class="modal-content" method="POST" action="{{ route('post-verifikasi') }}">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" name="laporan_id" id="laporan_id" value="">
+              <div class="modal-content">
+                <div class="modal-header"> 
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Status Laporan Warga</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Judul:</strong> <span id="editJudul"></span></p>
+                  
+                  <div class="mb-3">
+                    <label for="editStatus" class="form-label">Pilih Status</label>
+                    <select name="status" id="editStatus" class="form-select" required>
+                      <option value="completed">Selesai</option>
+                      <option value="progress">Masih dalam progres</option>
+                      <option value="pending">Menunggu</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+      const editButtons = document.querySelectorAll('.editBtn');
+      const editId = document.getElementById('editId');
+      const editName = document.getElementById('editJudul');
+      const editRole = document.getElementById('editStatus');
+
+      editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const id = button.getAttribute('data-report-id');
+          const judul = button.getAttribute('data-report-judul');
+          const status = button.getAttribute('data-report-status');
+
+          editId.value = id;
+          editJudul.textContent = judul;
+          editStatus.value = status;
+        });
+      });
+    </script>
   </body>
 </html>

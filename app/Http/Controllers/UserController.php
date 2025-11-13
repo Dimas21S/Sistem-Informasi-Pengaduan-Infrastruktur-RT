@@ -59,7 +59,7 @@ class UserController extends Controller
         }
 
         $user->update([
-            'nama' => $request->name,
+            'name' => $request->name,
             'foto_profil' => $user->foto_profil
         ]);
 

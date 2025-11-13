@@ -324,76 +324,11 @@
         <div class="featured-image">
             <i class="fas fa-image fa-3x"></i>
             <img src="{{ asset('image/Wa.jpg') }}" >
-            <span style="margin-left: 10px;">Gambar Jembatan yang Rusak</span>
+            <span style="margin-left: 10px;">Foto bukti</span>
         </div>
         
         <div class="content">
             <p>{{ $report->isi_laporan }}</p>
-            <p>Jembatan penghubung antara Desa Sukamaju dan Desa Sukarami mengalami kerusakan parah pada bagian struktur penyangga. Kerusakan ini terjadi akibat banjir bandang yang melanda daerah tersebut seminggu yang lalu. Saat ini, akses transportasi antara kedua desa terputus total, mengganggu aktivitas ekonomi dan sosial warga.</p>
-            
-            <p>Kerusakan terlihat pada pilar jembatan bagian tengah yang retak dan miring sekitar 15 derajat. Permukaan jembatan juga sudah tidak rata dan berpotensi membahayakan pengendara jika dipaksakan untuk dilintasi.</p>
-            
-            <h2>Dampak Kerusakan</h2>
-            
-            <p>Akibat putusnya akses transportasi ini, beberapa masalah serius telah muncul:</p>
-            
-            <ul>
-                <li>Akses siswa ke sekolah terhambat, dengan 45 siswa dari Desa Sukarami harus menempuh jarak 12 km lebih jauh untuk mencapai sekolah di Desa Sukamaju</li>
-                <li>Distribusi hasil pertanian terhambat, menyebabkan penurunan pendapatan petani</li>
-                <li>Layanan kesehatan darurat terganggu karena akses terdekat ke puskesmas terputus</li>
-                <li>Aktivitas perdagangan antara kedua desa terhenti total</li>
-            </ul>
-            
-            <blockquote>
-                "Kerusakan jembatan ini telah mengisolasi dua desa yang sebelumnya memiliki hubungan ekonomi dan sosial yang erat. Penanganan segera sangat dibutuhkan untuk memulihkan aktivitas warga."
-            </blockquote>
-            
-            <h2>Langkah Penanganan</h2>
-            
-            <p>Tim teknis telah melakukan assessment mendalam terhadap kerusakan jembatan dan menyusun rencana penanganan sebagai berikut:</p>
-            
-            <ol>
-                <li>Pemasangan rambu dan pembatas area untuk mencegah akses ke jembatan yang rusak</li>
-                <li>Pembangunan jembatan darurat sementara untuk akses pedestrian dan sepeda motor</li>
-                <li>Perbaikan struktur jembatan utama dengan metode perkuatan dan penggantian komponen yang rusak</li>
-                <li>Pengawasan ketat selama proses perbaikan untuk memastikan standar keamanan</li>
-            </ol>
-            
-            <p>Proses perbaikan diperkirakan akan memakan waktu 7-10 hari, dengan anggaran yang telah disetujui sebesar Rp 185 juta dari dana darurat infrastruktur daerah.</p>
-            
-            <div class="attachment-section">
-                <h3><i class="fas fa-paperclip"></i> Lampiran Dokumen</h3>
-                <ul class="attachment-list">
-                    <li class="attachment-item">
-                        <span class="attachment-icon"><i class="far fa-image"></i></span>
-                        <span class="attachment-name">foto_kerusakan_jembatan_1.jpg</span>
-                        <a href="#" class="attachment-download">Unduh <i class="fas fa-download"></i></a>
-                    </li>
-                    <li class="attachment-item">
-                        <span class="attachment-icon"><i class="far fa-image"></i></span>
-                        <span class="attachment-name">foto_kerusakan_jembatan_2.jpg</span>
-                        <a href="#" class="attachment-download">Unduh <i class="fas fa-download"></i></a>
-                    </li>
-                    <li class="attachment-item">
-                        <span class="attachment-icon"><i class="far fa-file-pdf"></i></span>
-                        <span class="attachment-name">laporan_teknis_kerusakan.pdf</span>
-                        <a href="#" class="attachment-download">Unduh <i class="fas fa-download"></i></a>
-                    </li>
-                    <li class="attachment-item">
-                        <span class="attachment-icon"><i class="far fa-file-alt"></i></span>
-                        <span class="attachment-name">rencana_anggaran_biaya.xlsx</span>
-                        <a href="#" class="attachment-download">Unduh <i class="fas fa-download"></i></a>
-                    </li>
-                </ul>
-            </div>
-            
-            <h2>Kronologi Kejadian</h2>
-            
-            <p>Kerusakan jembatan ini bermula dari banjir bandang yang melanda kawasan tersebut pada tanggal 8 Oktober 2023. Debit air yang tinggi dan membawa material kayu serta sampah menyebabkan tekanan berlebihan pada struktur jembatan.</p>
-            
-            <p>Warga pertama kali melaporkan keretakan pada pilar jembatan pada tanggal 10 Oktober 2023. Dua hari kemudian, terjadi kemiringan yang signifikan pada struktur jembatan, sehingga akses kendaraan ditutup total untuk alasan keamanan.</p>
-            
-            <p>Tim assessment dari Dinas Pekerjaan Umum tiba pada tanggal 13 Oktober 2023 dan langsung melakukan evaluasi menyeluruh terhadap kondisi jembatan.</p>
         </div>
         
         <div class="divider"></div>
