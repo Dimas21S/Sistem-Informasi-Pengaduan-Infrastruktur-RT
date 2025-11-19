@@ -195,8 +195,8 @@
             <i class="fas fa-tools"></i>
             <span class="login-logo-text">SIPIR</span>
           </div>
-          <h1 class="login-title">Masuk ke Akun</h1>
-          <p class="login-subtitle">Selamat datang kembali di SIPIR</p>
+          <h1 class="login-title">Buat Akun</h1>
+          <p class="login-subtitle">Selamat datang di SIPIR</p>
         </div>
         
         <form action="{{  route('register.post') }}" method="POST">

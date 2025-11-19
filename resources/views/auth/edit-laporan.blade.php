@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Laporan</title>
+    <title>Edit Laporan</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -11,186 +12,236 @@
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
         }
+
         body {
-            background-color: #fafafa;
-            color: #333;
-            line-height: 1.6;
+            background: #f5f6f7;
             padding: 20px;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
+
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 40px 30px;
+            padding: 32px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
         }
+
         h1 {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 30px;
             text-align: center;
-            color: #222;
-        }
-        .form-group {
             margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
         }
+
+        .form-group { margin-bottom: 25px; }
+
         label {
+            font-size: 14px;
+            font-weight: 600;
             display: block;
             margin-bottom: 8px;
-            font-size: 14px;
-            color: #555;
-            font-weight: 500;
+            color: #444;
         }
+
         textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 15px;
-            min-height: 120px;
-            resize: vertical;
-            background-color: #fcfcfc;
-            transition: border 0.2s;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #888;
-        }
-        .file-upload {
-            border: 1px dashed #e0e0e0;
-            border-radius: 6px;
-            padding: 25px 20px;
-            text-align: center;
-            background-color: #fcfcfc;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .file-upload:hover {
-            border-color: #888;
-        }
-        .file-input { display: none; }
-        .upload-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-            color: #666;
-        }
-        .upload-text { font-size: 14px; color: #666; margin-bottom: 5px; }
-        .upload-subtext { font-size: 12px; color: #999; }
-        .preview-container { margin-top: 15px; display: none; }
-        .preview-image {
-            max-width: 100%;
-            max-height: 150px;
-            border-radius: 4px;
-        }
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
-        }
-        button {
-            flex: 1;
             padding: 12px;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
+            resize: vertical;
+            min-height: 120px;
         }
-        .btn-submit { background-color: #222; color: white; }
-        .btn-submit:hover { background-color: #333; }
-        .btn-reset {
-            background-color: #f5f5f5;
-            color: #666;
-            border: 1px solid #e0e0e0;
-        }
-        .btn-reset:hover { background-color: #eee; }
+
         .char-count {
             text-align: right;
             font-size: 12px;
-            color: #999;
+            color: #777;
             margin-top: 5px;
         }
-        @media (max-width: 480px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 22px; }
+
+        #deskripsiError {
+            color: red;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
         }
+
+        .file-upload {
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            background: #fafafa;
+        }
+
+        .file-input { display: none; }
+
+        .preview-container {
+            margin-top: 12px;
+            display: none;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            border-radius: 6px;
+            max-height: 200px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .btn-submit { background: #1d1d1d; color: white; }
+        .btn-submit:hover { background: #333; }
+
+        .btn-reset {
+            background: #efefef;
+            border: 1px solid #ddd;
+        }
+        .btn-reset:hover { background: #e4e4e4; }
+
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Buat Laporan</h1>
-        
-        <form id="laporanForm" action="{{ route('form-laporan.post') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
-                <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan laporan Anda..." maxlength="500" required></textarea>
-                <div class="char-count"><span id="charCount">0</span>/500</div>
+
+<div class="container">
+
+    <h1>Edit Laporan</h1>
+
+    <form id="laporanForm" action="{{ route('edit-laporan.post', ['id' => $report->id_laporan]) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        <!-- DESKRIPSI -->
+        <div class="form-group">
+            <label for="deskripsi">Deskripsi</label>
+            <textarea id="deskripsi" name="deskripsi" maxlength="500" required>{!! $report->isi_laporan !!}</textarea>
+
+            <div class="char-count"><span id="charCount">0</span>/500</div>
+            <div id="deskripsiError">Deskripsi tidak boleh kosong.</div>
+        </div>
+
+        <!-- FOTO -->
+        <div class="form-group">
+            <label for="foto">Lampiran Foto (Opsional)</label>
+
+            <div class="file-upload" onclick="document.getElementById('foto').click()">
+                📷 <br>
+                Klik untuk memilih foto
             </div>
-            
-            <div class="form-group">
-                <label for="foto">Lampiran Foto (Opsional)</label>
-                <div class="file-upload" onclick="document.getElementById('foto').click()">
-                    <div class="upload-icon">📷</div>
-                    <div class="upload-text">Unggah foto</div>
-                    <div class="upload-subtext">Klik untuk memilih file</div>
-                    <input type="file" id="foto" name="foto" class="file-input" accept="image/*">
+
+            <input type="file" id="foto" name="foto" class="file-input" accept="image/*">
+
+            <!-- FOTO EXISTING -->
+            @if ($report->foto_bukti)
+                <div class="preview-container" style="display:block;">
+                    <p style="font-size: 13px; margin-bottom: 5px;">Foto saat ini:</p>
+                    <img src="{{ Storage::url($report->foto_bukti) }}" class="preview-image">
                 </div>
-                <div class="preview-container" id="previewContainer">
-                    <img src="" alt="Pratinjau Foto" class="preview-image" id="previewImage">
-                </div>
+            @endif
+
+            <!-- PREVIEW FOTO BARU -->
+            <div class="preview-container" id="previewContainer">
+                <img src="" id="previewImage" class="preview-image">
             </div>
-            
-            <div class="btn-group">
-                <button type="reset" class="btn-reset">Reset</button>
-                <button type="submit" class="btn-submit">Kirim</button>
-            </div>
-        </form>
-    </div>
+        </div>
 
-    <script>
-        const deskripsiTextarea = document.getElementById('deskripsi');
-        const charCount = document.getElementById('charCount');
-        const fileInput = document.getElementById('foto');
-        const previewContainer = document.getElementById('previewContainer');
-        const previewImage = document.getElementById('previewImage');
+        <div class="btn-group">
+            <button type="reset" class="btn-reset">Reset</button>
+            <button type="submit" class="btn-submit">Simpan</button>
+        </div>
 
-        // Hitung karakter
-        deskripsiTextarea.addEventListener('input', () => {
-            charCount.textContent = deskripsiTextarea.value.length;
-        });
+    </form>
 
-        // Preview gambar
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('Ukuran file terlalu besar. Maksimal 5MB.');
-                    this.value = '';
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewImage.src = e.target.result;
-                    previewContainer.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                previewContainer.style.display = 'none';
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+<script>
+    let editor;
+    const charCount = document.getElementById('charCount');
+    const deskripsiError = document.getElementById('deskripsiError');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewImage = document.getElementById('previewImage');
+
+    // CKEditor
+    ClassicEditor.create(document.querySelector('#deskripsi')).then(newEditor => {
+        editor = newEditor;
+
+        // Hitung karakter awal
+        const initialText = editor.getData().replace(/<[^>]*>/g, '');
+        charCount.textContent = initialText.length;
+
+        editor.model.document.on('change:data', () => {
+            const data = editor.getData();
+            const textContent = data.replace(/<[^>]*>/g, '');
+            charCount.textContent = textContent.length;
+
+            if (textContent.trim().length > 0) {
+                deskripsiError.style.display = 'none';
             }
         });
+    });
 
-        // Reset preview
-        document.getElementById('laporanForm').addEventListener('reset', function() {
-            charCount.textContent = '0';
-            previewContainer.style.display = 'none';
-        });
-    </script>
+    // Preview gambar baru
+    document.getElementById('foto').addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return previewContainer.style.display = 'none';
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("Ukuran foto maksimal 5MB.");
+            this.value = "";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            previewImage.src = e.target.result;
+            previewContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // Submit validasi
+    document.getElementById('laporanForm').addEventListener('submit', function (e) {
+        const text = editor.getData().replace(/<[^>]*>/g, '');
+
+        if (text.trim().length === 0) {
+            e.preventDefault();
+            deskripsiError.style.display = 'block';
+            return;
+        }
+
+        // Set data ke textarea
+        document.getElementById('deskripsi').value = editor.getData();
+    });
+
+    // Reset form
+    document.getElementById('laporanForm').addEventListener('reset', function () {
+        if (editor) editor.setData('');
+        charCount.textContent = 0;
+        deskripsiError.style.display = 'none';
+        previewContainer.style.display = 'none';
+    });
+</script>
+
 </body>
 </html>

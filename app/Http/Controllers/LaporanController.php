@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
 {
@@ -109,33 +110,44 @@ class LaporanController extends Controller
     public function postEditLaporan(Request $request, $id)
     {
         $report = Report::find($id);
+
         if (!$report) {
             return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
         }
 
-        $validasi = [
+        // 🔥 Cegah user mengedit laporan orang lain
+        if ($report->user_id !== Auth::id()) {
+            abort(403, 'Anda tidak memiliki akses untuk mengedit laporan ini.');
+        }
+
+        $request->validate([
             'deskripsi' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-        ];
-
-        $message = [
+            'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+        ],[
             'deskripsi.required' => 'Isi laporan wajib diisi!',
-            'deskripsi.string' => 'Isi laporan harus berupa teks!',
-            'foto.image' => 'File yang diunggah harus berupa gambar!',
-            'foto.mimes' => 'Format foto harus jpeg, png, atau jpg!',
-            'foto.max' => 'Ukuran foto maksimal 5MB!',
-        ];
+            'deskripsi.string'   => 'Isi laporan harus berupa teks!',
+            'foto.image'         => 'File harus berupa gambar!',
+            'foto.mimes'         => 'Format foto harus jpeg, png, atau jpg!',
+            'foto.max'           => 'Ukuran foto maksimal 5MB!',
+        ]);
 
-        $request->validate($validasi, $message);
+        // Upload foto jika ada
+        if ($request->hasFile('foto')) {
+            // 🔥 Hapus foto lama jika ada
+            if ($report->foto_bukti && Storage::disk('public')->exists($report->foto_bukti)) {
+                Storage::disk('public')->delete($report->foto_bukti);
+            }
 
-        if($request->hasFile('foto')){
+            // Upload foto baru
             $file = $request->file('foto');
             $nama_file = time()."_".$file->getClientOriginalName();
             $path = $file->storeAs('uploads', $nama_file, 'public');
+
             $report->foto_bukti = $path;
         }
 
-        $report->isi_laporan = $request->input('deskripsi');
+        // Update deskripsi
+        $report->isi_laporan = $request->deskripsi;
         $report->save();
 
         return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil diperbarui.');
