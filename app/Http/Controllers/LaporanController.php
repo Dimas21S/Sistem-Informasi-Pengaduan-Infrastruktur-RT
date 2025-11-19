@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class LaporanController extends Controller
 {
     //fungsi untuk menampilkan daftar laporan
-    public function showLaporan()
+    public function showLaporan(Request $request)
     {
-        $reports = Report::all();
+        $reports = Report::paginate(10);
         
         return view('daftar-laporan', compact('reports'));
     }
@@ -74,7 +74,7 @@ class LaporanController extends Controller
         $report->user_id = $user->id;
         $report->save();
 
-        return redirect()->back()->with('success', 'Laporan berhasil dibuat.');
+        return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil dibuat.');
     }
 
     // Fungsi untuk menghapus laporan
@@ -93,12 +93,17 @@ class LaporanController extends Controller
     // Fungsi untuk menampilkan form edit laporan
     public function getEditLaporan($id)
     {
-        $report = Report::find($id);
-        if (!$report) {
-            return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
+        // otomatis 404 jika laporan tidak ditemukan
+        $report = Report::findOrFail($id);
+
+        // cek apakah user pemilik laporan
+        if ($report->user_id !== Auth::id()) {
+            abort(403, 'Anda tidak memiliki akses untuk mengedit laporan ini.');
         }
+
         return view('auth.edit-laporan', compact('report'));
     }
+
 
     // Fungsi untuk memperbarui laporan
     public function postEditLaporan(Request $request, $id)
@@ -147,15 +152,59 @@ class LaporanController extends Controller
     public function postStatusLaporan(Request $request)
     {
         $request->validate([
+            'id_laporan' => 'required|exists:reports,id_laporan',
             'status' => 'required|in:pending,progress,completed',
         ]);
 
-        $laporan = Report::findOrFail($request->id);
+        $laporan = Report::findOrFail($request->id_laporan);
         
         $laporan->status = $request->status;
         $laporan->save();
 
         return redirect()->back()->with('success', 'Status laporan telah berhasil diubah');
+    }
+
+    public function getSearchLaporan(Request $request)
+    {
+        // Mulai query dasar
+        $reports = Report::query();
+
+        // Filter Search
+        if ($request->search) {
+            $reports->where(function ($query) use ($request) {
+                $query->where('judul_laporan', 'like', '%' . $request->search . '%')
+                    ->orWhere('isi_laporan', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Filter Status
+        if ($request->status) {
+            $reports->where('status', $request->status);
+        }
+
+        // Filter Tanggal
+        if ($request->sort == 'oldest') {
+            $reports->orderBy('created_at', 'asc');
+        } elseif ($request->sort == 'title') {
+            $reports->orderBy('title', 'asc');
+        } else {
+            // default newest
+            $reports->orderBy('created_at', 'desc');
+        }
+
+        // Eksekusi semua filter
+        $reports = $reports->paginate(10)->withQueryString();
+
+        return view('daftar-laporan', compact('reports'));
+    }
+
+
+    public function getLaporanUser()
+    {
+        $user = Auth::user();
+        $reports = Report::where('user_id', $user->id)->get();
+
+        return view('auth.laporan-user', compact('reports'));
     }
 
 }

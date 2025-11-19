@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,6 +27,11 @@ class AdminController extends Controller
         ]);
 
         $warga = User::findOrFail($request->id);
+        
+        if ($warga->id == Auth::id()) {
+            return back()->with('error', 'Anda tidak dapat mengubah role Anda sendiri.');
+        }
+
         $warga->update(['role' => $request->role]);
 
         return back()->with('success', 'Role berhasil diubah');

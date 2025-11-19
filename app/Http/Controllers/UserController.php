@@ -39,7 +39,7 @@ class UserController extends Controller
         $validate = [
             'name' => 'required|string|max:255',
             
-            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:5048',
         ];
 
         $message = [
@@ -60,7 +60,7 @@ class UserController extends Controller
 
         $user->update([
             'name' => $request->name,
-            'foto_profil' => $user->foto_profil
+            'profile_photo' => $user->foto_profil
         ]);
 
         return redirect()->route('profil')->with('success', 'Profil berhasil diperbarui.');
