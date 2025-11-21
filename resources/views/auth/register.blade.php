@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register - SIPIR</title>
+  <title>Register - SI NGADU</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -193,10 +193,10 @@
         <div class="login-header">
           <div class="login-logo">
             <i class="fas fa-tools"></i>
-            <span class="login-logo-text">SIPIR</span>
+            <span class="login-logo-text">SI NGADU</span>
           </div>
           <h1 class="login-title">Buat Akun</h1>
-          <p class="login-subtitle">Selamat datang di SIPIR</p>
+          <p class="login-subtitle">Selamat datang di SI NGADU</p>
         </div>
         
         <form action="{{  route('register.post') }}" method="POST">

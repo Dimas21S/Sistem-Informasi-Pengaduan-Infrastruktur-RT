@@ -7,9 +7,9 @@
         <div class="sidebar-logo">
           <div class="logo">
             <i class="fas fa-tools"></i>
-            <span class="logo-text">SIPIR</span>
+            <span class="logo-text">SI NGADU</span>
           </div>
-          <div class="logo-subtitle">Sistem Informasi Pengaduan</div>
+          <div class="logo-subtitle">Sistem Informasi Pengaduan Infrastruktur RT</div>
         </div>
         
         <hr class="my-2 mx-3">
