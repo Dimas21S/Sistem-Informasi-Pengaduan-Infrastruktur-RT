@@ -577,19 +577,19 @@
                         <a href="{{ route('daftar-laporan') }}" class="btn btn-outline">
                             <i class="fas fa-arrow-left"></i> Kembali
                         </a>
-                        <button class="btn btn-outline">
+                        {{-- <button class="btn btn-outline">
                             <i class="far fa-bookmark"></i> Simpan
-                        </button>
+                        </button> --}}
                         <button class="btn btn-outline">
                             @if ($report->user_id == auth()->id())
-                                    <a href="{{ url('/edit-laporan/' . $report->id_laporan) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ url('/edit-laporan/' . $report->id_laporan) }}" class="btn btn-sm">
                                         Edit
                                     </a>
                                 @endif
                         </button>
                     </div>
                     
-                    <div class="stats">
+                    {{-- <div class="stats">
                         <div class="stat">
                             <i class="far fa-eye"></i>
                             <span>{{ $report->views ?? 0 }} dilihat</span>
@@ -598,7 +598,7 @@
                             <i class="far fa-comment"></i>
                             <span>{{ $report->comments_count ?? 0 }} komentar</span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
