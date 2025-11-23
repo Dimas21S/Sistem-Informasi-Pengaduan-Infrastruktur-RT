@@ -208,7 +208,7 @@
 
                 <!-- Preview Foto -->
                 <img 
-                    src="{{ $user->photo ? asset('storage/profile/' . $user->photo) : 'https://via.placeholder.com/120' }}"
+                    src="{{ $user->profile_photo ? Storage::url($user->profile_photo) : asset('image/dapa.jpg') }}"
                     alt="Foto Profil"
                     class="rounded-circle mb-3"
                     width="120" height="120"
@@ -216,7 +216,7 @@
                 >
 
                 <!-- Input File -->
-                <input type="file" name="photo" class="form-control" accept="image/*">
+                <input type="file" name="foto_profil" class="form-control" accept="image/*">
                 <small class="text-muted">Format: JPG, PNG | Max: 2MB</small>
             </div>
 

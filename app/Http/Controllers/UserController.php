@@ -50,18 +50,21 @@ class UserController extends Controller
         ];
 
         $request->validate($validate, $message);
+        $foto = $user->profile_photo;
 
         if ($request->hasFile('foto_profil')) {
             $file = $request->file('foto_profil');
             $filename = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAs('uploads', $filename, 'public');
-            $user->foto_profil = $path;
+            $foto = $path;
         }
 
         $user->update([
             'name' => $request->name,
-            'profile_photo' => $user->foto_profil
+            'profile_photo' => $foto
         ]);
+
+        $user->save();
 
         return redirect()->route('profil')->with('success', 'Profil berhasil diperbarui.');
     }

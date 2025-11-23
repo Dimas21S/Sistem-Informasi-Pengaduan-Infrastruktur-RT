@@ -38,8 +38,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/', 'getLandingPage')->name('landing-page');
     Route::get('/warga/dashboard', 'getBerandaWarga')->name('warga.dashboard');
     Route::get('/petugas/dashboard', 'getDashboardPetugas')->name('petugas.dashboard');
-    Route::get('profil/edit', 'getEditProfil')->name('form-edit-profil');
-    Route::post('profil/edit', 'postEditProfil')->name('post-edit-profil');
+    Route::get('profil/edit', 'getEditProfile')->name('form-edit-profil');
+    Route::put('profil/edit', 'postEditProfile')->name('post-edit-profil');
 });
 
 Route::controller(AdminController::class)->group(function () {

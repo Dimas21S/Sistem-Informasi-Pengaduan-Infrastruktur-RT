@@ -422,7 +422,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="profile-image-container">
-                <img src="{{ $user->profile_photo ? Storage::url($user->profile_photo) : asset('Wa.jpg') }}" alt="Foto Profil" class="profile-image">
+                <img src="{{ $user->profile_photo ? Storage::url($user->profile_photo) : asset('image/dapa.jpg') }}" alt="Foto Profil" class="profile-image">
               </div>
             </div>
             <div class="col-md-8">
