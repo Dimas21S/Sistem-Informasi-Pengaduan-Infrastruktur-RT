@@ -363,47 +363,7 @@
   <body>
     <div class="d-flex">
       <!-- Sidebar -->
-      <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-0">
-        <div class="sidebar-logo">
-          <div class="logo">
-            <i class="fas fa-tools"></i>
-            <span class="logo-text">SIPIR</span>
-          </div>
-          <div class="logo-subtitle">Sistem Informasi Pengaduan</div>
-        </div>
-        
-        <hr class="my-2 mx-3">
-        
-        <ul class="nav nav-pills flex-column mb-auto px-3">
-          <li class="nav-item">
-            <a href="{{ route('warga.dashboard') }}" class="nav-link active">
-              <i class="fas fa-home"></i>
-              <span>Beranda</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('daftar-laporan') }}" class="nav-link">
-              <i class="fas fa-list"></i>
-              <span>Daftar Laporan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('profil') }}" class="nav-link">
-              <i class="fas fa-user"></i>
-              <span>Profil</span>
-            </a>
-          </li>
-        </ul>
-        
-        <hr class="my-2 mx-3">
-        
-        <div class="mt-auto p-3">
-          <a href="#" class="logout-btn" data-bs-toggle="modal" data-bs-target="#modalLogout">
-            <i class="fas fa-sign-out-alt me-2"></i>
-            <span>Log Out</span>
-          </a>
-        </div>
-      </div>
+      <x-sidebar/>
 
       <!-- Konten Utama -->
       <div id="content" class="flex-grow-1">
