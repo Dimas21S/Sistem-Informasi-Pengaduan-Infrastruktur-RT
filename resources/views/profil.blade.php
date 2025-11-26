@@ -493,7 +493,7 @@
                 <div class="card h-100">
                   <!-- Gambar laporan -->
                   <div class="card-img-container">
-                    <img src="{{ asset('image/Wa.jpg') }}" 
+                    <img src="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" 
                         class="card-img-top" 
                         alt="Foto Laporan">
                     
