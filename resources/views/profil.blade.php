@@ -444,9 +444,6 @@
                   <button class="btn btn-primary me-2 mb-2" onClick="window.location='{{ route('form-edit-profil') }}'">
                     <i class="fas fa-edit me-2"></i> Edit Profil
                   </button>
-                  <button class="btn btn-outline-secondary mb-2">
-                    <i class="fas fa-key me-2"></i> Ubah Password
-                  </button>
                 </div>
               </div>
             </div>

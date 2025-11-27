@@ -364,39 +364,12 @@
     <div class="d-flex">
       <!-- Sidebar -->
       <x-sidebar/>
-
-      <!-- Konten Utama -->
-      <div id="content" class="flex-grow-1">
-        <div class="dashboard-header">
-          <h2 class="page-title">Dashboard Laporan</h2>
-          <div class="user-info">
-            <div class="text-end">
-              <div class="user-name">{{ auth()->user()->name ?? 'Nama Pengguna' }}</div>
-              <div class="user-role">Warga</div>
-            </div>
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                <i class="fas fa-user-circle"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('profil') }}"><i class="fas fa-user me-2"></i> Profil</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalLogout">
-                    <i class="fas fa-sign-out-alt me-2"></i> Keluar
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
         
         <!-- Card Status Laporan -->
         <h4 class="section-title">Statistik Laporan</h4>
         <div class="card-container d-flex flex-wrap justify-content-center mb-5">
           <!-- Card laporan sukses -->
-          <div class="card status-card success-card">
+          <div class="card status-card success-card me-3">
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Selesai</h5>
               <i class="fas fa-check-circle status-icon success-icon"></i>
@@ -406,7 +379,7 @@
           </div>
 
           <!-- Card laporan proses -->
-          <div class="card status-card process-card">
+          <div class="card status-card process-card me-3">
             <div class="card-body status-card-body">
               <h5 class="card-title status-title">Status: Proses</h5>
               <i class="fas fa-cog status-icon process-icon"></i>

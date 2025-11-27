@@ -537,7 +537,6 @@
                     <a href="#home">Beranda</a>
                     <a href="#features">Fitur</a>
                     <a href="#how-it-works">Cara Kerja</a>
-                    <a href="#testimonials">Testimoni</a>
                     <a href="#contact">Kontak</a>
                 </div>
                 
@@ -668,57 +667,6 @@
         </div>
     </section>
 
-    {{-- <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Apa Kata Warga</h2>
-                <p>Testimoni dari warga yang telah menggunakan SIPIR untuk melaporkan masalah infrastruktur</p>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Sangat membantu! Jalan rusak di depan rumah saya sudah diperbaiki dalam waktu 3 hari setelah saya laporkan melalui SIPIR."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">BS</div>
-                        <div class="author-info">
-                            <h4>Budi Santoso</h4>
-                            <p>RT 05, Kelurahan Merdeka</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Sistem yang transparan. Saya bisa memantau kapan lampu penerangan jalan yang mati akan diganti."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SD</div>
-                        <div class="author-info">
-                            <h4>Sari Dewi</h4>
-                            <p>RT 08, Kelurahan Sejahtera</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Sebelum ada SIPIR, harus datang ke ketua RT untuk lapor. Sekarang cukup dari rumah, lebih praktis dan cepat ditanggapi."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AW</div>
-                        <div class="author-info">
-                            <h4>Ahmad Wijaya</h4>
-                            <p>RT 03, Kelurahan Bahagia</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
@@ -726,7 +674,7 @@
             <p>Bergabunglah dengan ratusan warga lainnya yang telah menggunakan SIPIR untuk memperbaiki infrastruktur RT mereka</p>
             <div class="cta-buttons">
                 <a href="#" class="btn btn-light">Laporkan Sekarang</a>
-                <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Buat akun</a>
+                <a href="{{ route('register.post') }}" class="btn btn-outline" style="color: white; border-color: white;">Buat akun</a>
             </div>
         </div>
     </section>

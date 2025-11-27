@@ -434,7 +434,12 @@
                     @endswitch
                     <td>
                       <div class="d-flex gap-2">
-                        <button class="btn btn-primary btn-sm">Lihat</button>
+                        <a href="{{ url('/detail-laporan/' . $item->id_laporan) }}" 
+                          class="btn btn-primary btn-sm" 
+                          target="_blank" 
+                          rel="noopener noreferrer">
+                            Lihat
+                        </a>
                         <button class="btn btn-warning btn-sm editBtn"
                           data-bs-toggle="modal" 
                           data-bs-target="#exampleModal"
