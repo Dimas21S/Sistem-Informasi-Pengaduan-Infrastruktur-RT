@@ -439,6 +439,7 @@
                           data-report-nama="{{ $item->user->name }}" 
                           data-report-id="{{ $item->id_laporan }}" 
                           data-report-judul="{{ $item->judul_laporan }}" 
+                          data-report-deskripsi="{{ $item->isi_laporan }}" 
                           data-report-status="{{ $item->status }}">
                           <i class="fas fa-edit me-1"></i> Edit
                         </button>
@@ -472,6 +473,7 @@
             <div class="modal-body">
               <p><strong>Judul:</strong> <span id="editJudul"></span></p>
               <p><strong>Pelapor:</strong> <span id="editNama"></span></p>
+              <p><strong>Deskripsi:</strong> <span id="editDeskripsi"></span></p>
               
               <div class="mb-3">
                 <label for="editStatus" class="form-label">Pilih Status</label>
@@ -487,28 +489,6 @@
               <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Logout -->
-    <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLogoutLabel">Konfirmasi Logout</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="d-flex align-items-center">
-              <i class="fas fa-exclamation-triangle text-warning me-3" style="font-size: 1.5rem;"></i>
-              <p class="mb-0">Apakah Anda yakin ingin keluar dari sistem?</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <a href="{{ route('logout') }}" class="btn btn-primary">Ya, Logout</a>
-          </div>
         </div>
       </div>
     </div>
@@ -537,6 +517,7 @@
       const editNama = document.getElementById('editNama');
       const editJudul = document.getElementById('editJudul');
       const editStatus = document.getElementById('editStatus');
+      const editDeskripsi = document.getElementById('editDeskripsi');
 
       editButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -544,11 +525,13 @@
           const nama = button.getAttribute('data-report-nama');
           const judul = button.getAttribute('data-report-judul');
           const status = button.getAttribute('data-report-status');
+          const deskripsi = button.getAttribute('data-report-deskripsi');
 
           editId.value = id;
           editNama.textContent = nama;
           editJudul.textContent = judul;
           editStatus.value = status;
+          editDeskripsi.value = deskripsi;
         });
       });
     </script>
