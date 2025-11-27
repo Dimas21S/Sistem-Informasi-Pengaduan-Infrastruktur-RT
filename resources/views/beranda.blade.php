@@ -364,9 +364,19 @@
     <div class="d-flex">
       <!-- Sidebar -->
       <x-sidebar/>
+
+        <!-- Konten Utama -->
+      <div id="content" class="flex-grow-1">
+        <div class="dashboard-header">
+          <h2 class="page-title">Dashboard Laporan</h2>
+          <div class="user-info">
+            <div class="text-end">
+              <div class="user-name">{{ auth()->user()->name ?? 'Nama Pengguna' }}</div>
+            </div>
+          </div>
+        </div>
         
         <!-- Card Status Laporan -->
-        <h4 class="section-title">Statistik Laporan</h4>
         <div class="card-container d-flex flex-wrap justify-content-center mb-5">
           <!-- Card laporan sukses -->
           <div class="card status-card success-card me-3">

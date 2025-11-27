@@ -347,9 +347,6 @@
                     </td>
                     <td>
                       <div class="d-flex gap-2">
-                        <button class="btn btn-primary btn-sm">
-                          <i class="fas fa-eye me-1"></i> Lihat
-                        </button>
                         <button class="btn btn-warning btn-sm editBtn" 
                           data-bs-toggle="modal" 
                           data-bs-target="#exampleModal" 
