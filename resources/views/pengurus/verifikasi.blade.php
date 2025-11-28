@@ -409,7 +409,7 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Judul Laporan</th>
+                  <th scope="col">Deskripsi Laporan</th>
                   <th scope="col">Tanggal Laporan</th>
                   <th scope="col">Status</th>
                   <th scope="col">Aksi</th>
@@ -419,7 +419,7 @@
                 @foreach ($laporan as $item)
                   <tr>
                     <th scope="row">{{ $item->id_laporan }}</th>
-                    <td>{{ $item->judul_laporan }}</td>
+                    <td>{!! Str::limit($iem->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</td>
                     <td>{{ \Carbon\Carbon::parse($item->tanggal_laporan)->format('d M Y') }}</td>
                     @switch($item->status)
                       @case('completed')
