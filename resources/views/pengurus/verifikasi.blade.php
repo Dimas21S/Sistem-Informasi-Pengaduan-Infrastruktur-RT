@@ -419,7 +419,7 @@
                 @foreach ($laporan as $item)
                   <tr>
                     <th scope="row">{{ $item->id_laporan }}</th>
-                    <td>{!! Str::limit($iem->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</td>
+                    <td>{!! Str::limit($item->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</td>
                     <td>{{ \Carbon\Carbon::parse($item->tanggal_laporan)->format('d M Y') }}</td>
                     @switch($item->status)
                       @case('completed')

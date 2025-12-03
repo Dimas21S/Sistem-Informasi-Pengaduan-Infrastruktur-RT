@@ -321,55 +321,46 @@
     <script>
       // Script untuk chart
       document.addEventListener('DOMContentLoaded', function() {
-        const labels = @json($label);
-        const data = @json($values);
+      const labels = @json($label);
+      const values = @json($values);
 
-        console.log(labels);
-        console.log(data);
-        
-        const ctx = document.getElementById('lineChart').getContext('2d');
-        const lineChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
+      const ctx = document.getElementById('lineChart').getContext('2d');
+
+      const data = {
+          labels: labels,
+          datasets: [{
               label: 'Jumlah Laporan',
-              data: data,
-              borderColor: '#2563eb',
-              backgroundColor: 'rgba(37, 99, 235, 0.1)',
-              pointStyle: 'circle',
-              pointRadius: 5,
-              pointHoverRadius: 7,
-              fill: true,
-              tension: 0.3
-            }]
-          },
+              data: values,
+              backgroundColor: '#2563eb', // warna batang
+              borderWidth: 1,
+              borderColor: '#1d4ed8',
+          }]
+      };
+
+      const config = {
+          type: 'bar', // ⇐ diganti menjadi BAR
+          data: data,
           options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'top',
+                  },
+                  title: {
+                      display: true,         // tampilkan judul chart
+                      text: 'Statistik Laporan Bulanan'
+                  }
               },
-              title: {
-                display: false
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
               }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                grid: {
-                  color: 'rgba(0, 0, 0, 0.05)'
-                }
-              },
-              x: {
-                grid: {
-                  display: false
-                }
-              }
-            }
           }
-        });
-      });
+      };
+
+      new Chart(ctx, config);
+  });
       
       // Toggle sidebar for mobile
       function toggleSidebar() {

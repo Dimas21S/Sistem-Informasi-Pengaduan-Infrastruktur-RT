@@ -31,6 +31,7 @@ Route::controller(LaporanController::class)->group(function () {
     Route::get('/verifikasi-laporan', 'getStatusLaporan')->name('get-verifikasi');
     Route::post('/verifikasi-laporan', 'postStatusLaporan')->name('post-verifikasi');
     Route::get('/daftar-laporan/search', 'getSearchLaporan')->name('search-laporan');
+    Route::post('/delete-laporan/{id}', 'postDeleteLaporan')->name('delete-laporan');
 });
 
 Route::controller(UserController::class)->group(function () {

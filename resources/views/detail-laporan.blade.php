@@ -552,7 +552,7 @@
                         <li class="attachment-item">
                             <i class="fas fa-image attachment-icon"></i>
                             <span class="attachment-name">Foto Bukti</span>
-                            <a href="{{ asset('storage/' . $report->foto) }}" class="attachment-download" download>
+                            <a href="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" class="attachment-download" download>
                                 <i class="fas fa-download"></i> Unduh
                             </a>
                         </li>

@@ -86,6 +86,10 @@ class LaporanController extends Controller
             return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
         }
 
+        if ($report->foto_bukti && Storage::exists($report->foto_bukti)) {
+            Storage::delete($report->foto_bukti);
+        }
+
         $report->delete();
 
         return redirect()->route('daftar-laporan')->with('success', 'Laporan berhasil dihapus.');

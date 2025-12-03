@@ -511,16 +511,49 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ $report->judul_laporan }}</h5>
                     <p class="card-text">{{ Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) }}</p>
-                    
-                    <div class="mt-auto">
-                      <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" class="btn btn-outline-primary">
-                        <i class="fas fa-eye me-1"></i> Lihat Detail
-                      </a>
+                      
+                    <div class="mt-auto d-flex gap-2">
+                        <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" class="btn btn-outline-primary">
+                            <i class="fas fa-eye me-1"></i> Lihat Detail
+                        </a>
+
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $report->id_laporan }}">Hapus</button>
                     </div>
+
                   </div>
                 </div>
               </div>
+
+              <!-- Modal Konfirmasi Hapus -->
+              <div class="modal fade" id="modalHapus{{ $report->id_laporan }}" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="modalHapusLabel">Konfirmasi Penghapusan</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+
+                          <div class="modal-body">
+                              <p>Apakah Anda yakin ingin menghapus laporan <b>"{{ $report->judul_laporan }}"</b>?</p>
+                              <p class="text-danger mb-0"><b>Tindakan tidak dapat dibatalkan.</b></p>
+                          </div>
+
+                          <div class="modal-footer d-flex justify-content-between">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+
+                              <form action="{{ url('/delete-laporan/' . $report->id_laporan) }}" method="POST">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button class="btn btn-danger">Ya, Hapus</button>
+                              </form>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
             @endforeach
+
           </div>
         </div>
       </div>

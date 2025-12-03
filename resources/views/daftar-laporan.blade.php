@@ -406,23 +406,28 @@
                   <img src="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" 
                       class="card-img-top" 
                       alt="Foto Laporan">
-                  
-                  <!-- Badge status di pojok atas gambar -->
-                  <div class="card-badge 
-                    @if ($report->status === 'completed') bg-success
-                    @elseif ($report->status === 'progress') bg-warning text-dark
-                    @elseif ($report->status === 'pending') bg-danger
-                    @else bg-secondary @endif">
-                    @if ($report->status === 'completed') Selesai
-                    @elseif ($report->status === 'progress') Diproses
-                    @elseif ($report->status === 'pending') Menunggu
-                    @else Belum Diketahui @endif
-                  </div>
                 </div>
 
                 <!-- Isi kartu -->
                 <div class="card-body">
-                  <h5 class="card-title">{{ $report->judul_laporan }}</h5>
+                                    <!-- Badge status di pojok atas gambar -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">{{ $report->judul_laporan }}</h5>
+
+                    <!-- Badge status di samping judul -->
+                    <span class="badge 
+                        @if ($report->status === 'completed') bg-success
+                        @elseif ($report->status === 'progress') bg-warning text-dark
+                        @elseif ($report->status === 'pending') bg-danger
+                        @else bg-secondary @endif">
+                        
+                        @if ($report->status === 'completed') Selesai
+                        @elseif ($report->status === 'progress') Diproses
+                        @elseif ($report->status === 'pending') Menunggu
+                        @else Belum Diketahui @endif
+                    </span>
+                </div>
+                
                   <p class="card-text">{!! Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</p>
                   
                   <div class="mt-auto">
@@ -435,9 +440,6 @@
             </div>
           @endforeach
         </div>
-
-
-
 
         <!-- Pagination -->
         <nav aria-label="Page navigation" class="mt-4">
