@@ -410,7 +410,7 @@
 
                 <!-- Isi kartu -->
                 <div class="card-body">
-                                    <!-- Badge status di pojok atas gambar -->
+                  <!-- Badge status di pojok atas gambar -->
                   <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">{{ $report->judul_laporan }}</h5>
 
@@ -430,11 +430,25 @@
                 
                   <p class="card-text">{!! Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</p>
                   
-                  <div class="mt-auto">
-                    <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" class="btn btn-outline-primary">
-                      <i class="fas fa-eye me-1"></i> Lihat Detail
-                    </a>
+                  <div class="mt-auto d-flex gap-2">
+
+                      <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" 
+                        class="btn btn-outline-primary">
+                          <i class="fas fa-eye me-1"></i> Lihat Detail
+                      </a>
+
+                      {{-- @if ($report->user_id == auth()->id())
+                      <form action="{{ url('/delete-laporan/' . $report->id_laporan) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger">
+                              <i class="fas fa-trash-alt me-1"></i> Hapus
+                          </button>
+                      </form>
+                      @endif --}}
+
                   </div>
+
                 </div>
               </div>
             </div>

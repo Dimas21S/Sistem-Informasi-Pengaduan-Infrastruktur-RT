@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'ser',
+            'email' => 'totet@example.com',
         ]);
 
         $users = [
             [
-                'name'=> 'Admin', 'email'=>'admin@example.com', 'password'=> bcrypt('password'), 'role'=>'Admin',
+                'name'=> 'Dava', 'email'=>'dava@example.com', 'password'=> bcrypt('12345678'), 'role'=>'Admin',
             ],
             [
-                'name'=> 'Petugas', 'email'=>'petugas@example.com', 'password'=> bcrypt('password'), 'role'=>'Petugas',
+                'name'=> 'Robby', 'email'=>'robby@example.com', 'password'=> bcrypt('87654321'), 'role'=>'Petugas',
             ],
         ];
 

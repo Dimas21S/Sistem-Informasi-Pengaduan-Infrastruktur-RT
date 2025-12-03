@@ -485,76 +485,59 @@
           <h4 class="section-title">Laporan Saya</h4>
 
           <div class="row">
-            @foreach ($user->reports as $report)
-              <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-                <div class="card h-100">
-                  <!-- Gambar laporan -->
-                  <div class="card-img-container">
-                    <img src="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" 
-                        class="card-img-top" 
-                        alt="Foto Laporan">
-                    
-                    <!-- Badge status di pojok atas gambar -->
-                    <div class="card-badge 
-                      @if ($report->status === 'completed') bg-success
-                      @elseif ($report->status === 'progress') bg-warning text-dark
-                      @elseif ($report->status === 'pending') bg-danger
-                      @else bg-secondary @endif">
-                      @if ($report->status === 'completed') Selesai
-                      @elseif ($report->status === 'progress') Diproses
-                      @elseif ($report->status === 'pending') Menunggu
-                      @else Belum Diketahui @endif
-                    </div>
-                  </div>
+          @foreach ($user->reports as $report)
+            <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+              <div class="card h-100">
+                <!-- Gambar laporan -->
+                <div class="card-img-container">
+                  <img src="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" 
+                      class="card-img-top" 
+                      alt="Foto Laporan">
+                </div>
 
-                  <!-- Isi kartu -->
-                  <div class="card-body">
-                    <h5 class="card-title">{{ $report->judul_laporan }}</h5>
-                    <p class="card-text">{{ Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) }}</p>
-                      
-                    <div class="mt-auto d-flex gap-2">
-                        <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" class="btn btn-outline-primary">
-                            <i class="fas fa-eye me-1"></i> Lihat Detail
-                        </a>
+                <!-- Isi kartu -->
+                <div class="card-body">
+                  <!-- Badge status di pojok atas gambar -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">{{ $report->judul_laporan }}</h5>
 
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $report->id_laporan }}">Hapus</button>
-                    </div>
+                    <!-- Badge status di samping judul -->
+                    <span class="badge 
+                        @if ($report->status === 'completed') bg-success
+                        @elseif ($report->status === 'progress') bg-warning text-dark
+                        @elseif ($report->status === 'pending') bg-danger
+                        @else bg-secondary @endif">
+                        
+                        @if ($report->status === 'completed') Selesai
+                        @elseif ($report->status === 'progress') Diproses
+                        @elseif ($report->status === 'pending') Menunggu
+                        @else Belum Diketahui @endif
+                    </span>
+                </div>
+                
+                  <p class="card-text">{!! Str::limit($report->isi_laporan ?? 'Tidak ada deskripsi', 90) !!}</p>
+                  
+                                    <div class="mt-auto d-flex gap-2">
+
+                      <a href="{{ url('/detail-laporan/' . $report->id_laporan) }}" 
+                        class="btn btn-outline-primary">
+                          <i class="fas fa-eye me-1"></i> Lihat Detail
+                      </a>
+
+                      <form action="{{ url('/delete-laporan/' . $report->id_laporan) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger">
+                              <i class="fas fa-trash-alt me-1"></i> Hapus
+                          </button>
+                      </form>
 
                   </div>
                 </div>
               </div>
-
-              <!-- Modal Konfirmasi Hapus -->
-              <div class="modal fade" id="modalHapus{{ $report->id_laporan }}" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="modalHapusLabel">Konfirmasi Penghapusan</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                          </div>
-
-                          <div class="modal-body">
-                              <p>Apakah Anda yakin ingin menghapus laporan <b>"{{ $report->judul_laporan }}"</b>?</p>
-                              <p class="text-danger mb-0"><b>Tindakan tidak dapat dibatalkan.</b></p>
-                          </div>
-
-                          <div class="modal-footer d-flex justify-content-between">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-
-                              <form action="{{ url('/delete-laporan/' . $report->id_laporan) }}" method="POST">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button class="btn btn-danger">Ya, Hapus</button>
-                              </form>
-                          </div>
-
-                      </div>
-                  </div>
-              </div>
-            @endforeach
-
-          </div>
+            </div>
+          @endforeach
+        </div>
         </div>
       </div>
     </div>

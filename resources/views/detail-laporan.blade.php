@@ -487,7 +487,7 @@
                         </div>
                         <div class="author-info">
                             <span class="author-name">{{ $report->user->name }}</span>
-                            <span class="post-date">{{ \Carbon\Carbon::parse($report->tanggal_laporan)->format('d M Y') }} · {{ $report->created_at->diffForHumans() }}</span>
+                            <span class="author-name">{{ $report->tanggal_laporan }}</span>
                         </div>
                     </div>
                     
@@ -522,8 +522,8 @@
                 </div>
                 
                 <div class="featured-image">
-                    @if($report->foto)
-                        <img src="{{ asset('storage/' . $report->foto) }}" alt="Foto Laporan">
+                    @if($report->foto_bukti)
+                        <img src="{{ $report->foto_bukti ? Storage::url($report->foto_bukti) : asset('image/Wa.jpg') }}" alt="Foto Laporan">
                     @else
                         <div class="d-flex flex-column align-items-center">
                             <i class="fas fa-image fa-3x mb-3"></i>
@@ -574,19 +574,17 @@
                 
                 <div class="actions">
                     <div class="action-buttons">
-                        <a href="{{ route('daftar-laporan') }}" class="btn btn-outline">
+                        <a href="{{ route('daftar-laporan') }}" class="btn btn-outline border border-dark">
                             <i class="fas fa-arrow-left"></i> Kembali
                         </a>
                         {{-- <button class="btn btn-outline">
                             <i class="far fa-bookmark"></i> Simpan
                         </button> --}}
-                        <button class="btn btn-outline">
                             @if ($report->user_id == auth()->id())
-                                    <a href="{{ url('/edit-laporan/' . $report->id_laporan) }}" class="btn btn-sm">
+                                    <a href="{{ url('/edit-laporan/' . $report->id_laporan) }}" class="btn btn-sm border border-dark">
                                         Edit
                                     </a>
                                 @endif
-                        </button>
                     </div>
                     
                     {{-- <div class="stats">
