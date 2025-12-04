@@ -454,6 +454,9 @@
       </div>
     </div>
 
+    <!-- Modal Logout -->
+    <x-modal-logout/>
+
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()">
       <i class="fas fa-bars"></i>
@@ -531,7 +534,7 @@
           editNama.textContent = nama;
           editJudul.textContent = judul;
           editStatus.value = status;
-          editDeskripsi.value = deskripsi;
+          editDeskripsi.textContent = deskripsi;
         });
       });
     </script>

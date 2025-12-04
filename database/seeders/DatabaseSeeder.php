@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($users as $user => $value) {
-            User::create($value);
-        }
+        // foreach ($users as $user => $value) {
+        //     User::create($value);
+        // }
 
-        $this->call([
-            ReportSeeder::class,
-        ]);
+        // $this->call([
+        //     ReportSeeder::class,
+        // ]);
     }
 }
